@@ -26,9 +26,6 @@ NSString * const BARequestSerializerHTTPHeaderKeyContentType = @"Content-Type";
 NSString * const BARequestSerializerHTTPHeaderKeyContentLength = @"Content-Length";
 
 
-static NSString * const kHeaderRequestId = @"X-Podio-Request-Id";
-static NSUInteger const kRequestIdLength = 8;
-
 static NSString * const kAuthorizationOAuth2AccessTokenFormat = @"OAuth2 %@";
 
 static NSString * const kHeaderTimeZone = @"X-Time-Zone";
@@ -128,7 +125,6 @@ static NSUInteger const kBoundaryLength = 20;
     
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
     urlRequest.HTTPMethod = [[self class] HTTPMethodForMethod:request.method];
-    [urlRequest setValue:[[self class] generatedRequestId] forHTTPHeaderField:kHeaderRequestId];
     [urlRequest setValue:[self contentTypeForRequest:request] forHTTPHeaderField:BARequestSerializerHTTPHeaderKeyContentType];
     [urlRequest setValue:[[NSTimeZone localTimeZone] name] forHTTPHeaderField:kHeaderTimeZone];
     
@@ -169,11 +165,6 @@ static NSUInteger const kBoundaryLength = 20;
 }
 
 #pragma mark - Private
-
-+ (NSString *)generatedRequestId {
-    return [NSString ba_randomHexStringOfLength:kRequestIdLength];
-}
-
 + (NSString *)HTTPMethodForMethod:(BARequestMethod)method {
     NSString *string = nil;
     

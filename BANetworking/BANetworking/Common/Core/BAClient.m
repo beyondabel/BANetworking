@@ -296,8 +296,6 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
 #pragma mark - Requests
 
 - (BAAsyncTask *)performRequest:(BARequest *)request {
-    NSAssert(self.apiKey && self.apiSecret, @"You need to configure PodioKit with an API key and secret. Call [PodioKit setupWithAPIKey:secret:] before making any requests using PodioKit.");
-    
     BAAsyncTask *task = nil;
     
     if (self.isAuthenticated) {
@@ -420,9 +418,9 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
     
     BAOAuth2Token *token = self.oauthToken;
     if (token) {
-//        [self.tokenStore storeToken:token];
+        [self.tokenStore storeToken:token];
     } else {
-//        [self.tokenStore deleteStoredToken];
+        [self.tokenStore deleteStoredToken];
     }
 }
 
@@ -430,7 +428,7 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
     if (!self.tokenStore) return;
     
     if (!self.isAuthenticated) {
-//        self.oauthToken = [self.tokenStore storedToken];
+        self.oauthToken = [self.tokenStore storedToken];
     }
 }
 

@@ -91,7 +91,7 @@ extern NSString * const BAClientAuthenticationStateDidChangeNotification;
 
 /** Configure the default client with a Podio API key/secret pair.
  *
- * @see https://developers.podio.com/api-key
+ * @see 
  *
  * @param key The Podio API key
  * @param secret The Podio API secret matching the key

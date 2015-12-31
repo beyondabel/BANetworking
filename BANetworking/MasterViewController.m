@@ -8,6 +8,24 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
+#import "BARequest.h"
+#import "BAClient.h"
+#import "BAAsyncTask.h"
+#import "BAModel.h"
+
+@interface BAUser : BAModel
+
+@property (nonatomic, assign) NSInteger userID;
+@property (nonatomic, strong) NSString *userName;
+
+@end
+
+@implementation BAUser
+
+
+
+@end
+
 
 @interface MasterViewController ()
 
@@ -27,6 +45,7 @@
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
+
 }
 
 - (void)didReceiveMemoryWarning {

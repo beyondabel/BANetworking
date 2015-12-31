@@ -12,8 +12,8 @@
 #import "BASecurity.h"
 #import "BAMacros.h"
 
-static NSString * const kDefaultBaseURLString = @"https://api.podio.com";
-static char * const kRequestProcessingQueueLabel = "com.abel.networingkit.httpclient.response_processing_queue";
+static NSString * const kDefaultBaseURLString = @"https://api.jindanlicai.com";
+static char * const kRequestProcessingQueueLabel = "com.jindanlicai.networingkit.httpclient.response_processing_queue";
 
 typedef NS_ENUM(NSUInteger, BAErrorCode) {
     BAErrorCodeUnknown = 1000,
