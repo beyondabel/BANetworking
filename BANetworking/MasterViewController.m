@@ -22,14 +22,13 @@
 
 @implementation BAUser
 
-
-
 @end
 
 
 @interface MasterViewController ()
 
 @property NSMutableArray *objects;
+
 @end
 
 @implementation MasterViewController
@@ -46,6 +45,13 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
 
+//    BARequest *request = [BARequest GETRequestWithPath:@"help_background" parameters:nil];
+    BARequest *request = [BARequest GETRequestWithURL:[NSURL URLWithString:@"https://www.baidu.com"] parameters:nil];
+    [[[BAClient currentClient] performRequest:request] onComplete:^(BAResponse *result, NSError *error) {
+        NSLog(@"help_background = %@", [[NSString alloc]initWithData:result.body encoding:NSUTF8StringEncoding]);
+//        DetailViewController *detaiViewController = [[DetailViewController alloc] init];
+//        [self.navigationController pushViewController:detaiViewController animated:YES];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

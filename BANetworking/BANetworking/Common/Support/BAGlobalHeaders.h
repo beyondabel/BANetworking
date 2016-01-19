@@ -21,9 +21,3 @@
 
 #import "NSError+BAErrors.h"
 
-#ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
-#import "BAFile+UIImage.h"
-#import "UIButton+BARemoteImage.h"
-#import "UIImageView+BARemoteImage.h"
-#endif
-

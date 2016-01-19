@@ -8,6 +8,8 @@
 
 #import "BANetworking.h"
 #import "BAClient.h"
+#import "BAKeychainTokenStore.h"
+#import "BAUserDefaultsTokenStore.h"
 
 @implementation BANetworking
 
@@ -25,7 +27,7 @@
 
 
 + (void)automaticallyStoreTokenInKeychainForServiceWithName:(NSString *)name {
-//    [BAClient currentClient].tokenStore = [[BAKeychainTokenStore alloc] initWithService:name];
+    [BAClient currentClient].tokenStore = [[BAKeychainTokenStore alloc] initWithService:name];
     [[BAClient currentClient] restoreTokenIfNeeded];
 }
 
@@ -34,9 +36,9 @@
     [self automaticallyStoreTokenInKeychainForServiceWithName:name];
 }
 
-
 + (void)automaticallyStoreTokenInUserDefaultsForServiceWithName:(NSString *)name {
-
+    [BAClient currentClient].tokenStore = [[BAUserDefaultsTokenStore alloc] initWithService:name];
+    [[BAClient currentClient] restoreTokenIfNeeded];
 }
 
 + (void)automaticallyStoreTokenInUserDefaultsForCurrentApp {

@@ -99,7 +99,6 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
 @end
 
 
-
 @implementation BAClient
 
 @synthesize pendingRequests = _pendingRequests;

@@ -43,6 +43,10 @@
 		B56CEA561B9C2FD1006AAE86 /* BABaseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CEA551B9C2FD1006AAE86 /* BABaseAPI.m */; };
 		B56CEA591B9C38DD006AAE86 /* BAOAuth2Token.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CEA581B9C38DD006AAE86 /* BAOAuth2Token.m */; };
 		B56CEA5F1B9C39A5006AAE86 /* BAAuthenticationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CEA5E1B9C39A5006AAE86 /* BAAuthenticationAPI.m */; };
+		B5A026C51C4634ED000653D6 /* BAKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A026BD1C4634ED000653D6 /* BAKeychain.m */; };
+		B5A026C61C4634ED000653D6 /* BAKeychainTokenStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A026BF1C4634ED000653D6 /* BAKeychainTokenStore.m */; };
+		B5A026C71C4634ED000653D6 /* BAUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A026C21C4634ED000653D6 /* BAUserDefaults.m */; };
+		B5A026C81C4634ED000653D6 /* BAUserDefaultsTokenStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A026C41C4634ED000653D6 /* BAUserDefaultsTokenStore.m */; };
 		B5B81D9C1B9BDC8C00D6588D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B81D9B1B9BDC8C00D6588D /* main.m */; };
 		B5B81D9F1B9BDC8C00D6588D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B81D9E1B9BDC8C00D6588D /* AppDelegate.m */; };
 		B5B81DA21B9BDC8C00D6588D /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B81DA11B9BDC8C00D6588D /* MasterViewController.m */; };
@@ -145,6 +149,14 @@
 		B56CEA581B9C38DD006AAE86 /* BAOAuth2Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAOAuth2Token.m; sourceTree = "<group>"; };
 		B56CEA5D1B9C39A5006AAE86 /* BAAuthenticationAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAAuthenticationAPI.h; sourceTree = "<group>"; };
 		B56CEA5E1B9C39A5006AAE86 /* BAAuthenticationAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAAuthenticationAPI.m; sourceTree = "<group>"; };
+		B5A026BC1C4634ED000653D6 /* BAKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAKeychain.h; sourceTree = "<group>"; };
+		B5A026BD1C4634ED000653D6 /* BAKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAKeychain.m; sourceTree = "<group>"; };
+		B5A026BE1C4634ED000653D6 /* BAKeychainTokenStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAKeychainTokenStore.h; sourceTree = "<group>"; };
+		B5A026BF1C4634ED000653D6 /* BAKeychainTokenStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAKeychainTokenStore.m; sourceTree = "<group>"; };
+		B5A026C11C4634ED000653D6 /* BAUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAUserDefaults.h; sourceTree = "<group>"; };
+		B5A026C21C4634ED000653D6 /* BAUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAUserDefaults.m; sourceTree = "<group>"; };
+		B5A026C31C4634ED000653D6 /* BAUserDefaultsTokenStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAUserDefaultsTokenStore.h; sourceTree = "<group>"; };
+		B5A026C41C4634ED000653D6 /* BAUserDefaultsTokenStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAUserDefaultsTokenStore.m; sourceTree = "<group>"; };
 		B5B81D961B9BDC8C00D6588D /* BANetworking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BANetworking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B81D9A1B9BDC8C00D6588D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5B81D9B1B9BDC8C00D6588D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -197,7 +209,6 @@
 			isa = PBXGroup;
 			children = (
 				B56CE9AF1B9BDF1E006AAE86 /* Common */,
-				B56CE9B41B9BDF1E006AAE86 /* UIKit */,
 			);
 			path = BANetworking;
 			sourceTree = "<group>";
@@ -269,13 +280,6 @@
 				B56CEA531B9C1ADF006AAE86 /* BAConstants.h */,
 			);
 			path = Support;
-			sourceTree = "<group>";
-		};
-		B56CE9B41B9BDF1E006AAE86 /* UIKit */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UIKit;
 			sourceTree = "<group>";
 		};
 		B56CE9DF1B9C14E6006AAE86 /* Categories */ = {
@@ -454,6 +458,28 @@
 			path = NSValueTransformer;
 			sourceTree = "<group>";
 		};
+		B5A026BB1C4634ED000653D6 /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				B5A026BC1C4634ED000653D6 /* BAKeychain.h */,
+				B5A026BD1C4634ED000653D6 /* BAKeychain.m */,
+				B5A026BE1C4634ED000653D6 /* BAKeychainTokenStore.h */,
+				B5A026BF1C4634ED000653D6 /* BAKeychainTokenStore.m */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
+		B5A026C01C4634ED000653D6 /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				B5A026C11C4634ED000653D6 /* BAUserDefaults.h */,
+				B5A026C21C4634ED000653D6 /* BAUserDefaults.m */,
+				B5A026C31C4634ED000653D6 /* BAUserDefaultsTokenStore.h */,
+				B5A026C41C4634ED000653D6 /* BAUserDefaultsTokenStore.m */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
 		B5B81D8D1B9BDC8C00D6588D = {
 			isa = PBXGroup;
 			children = (
@@ -543,6 +569,8 @@
 		B5D9EF451C35098900739753 /* Datastore */ = {
 			isa = PBXGroup;
 			children = (
+				B5A026BB1C4634ED000653D6 /* Keychain */,
+				B5A026C01C4634ED000653D6 /* UserDefaults */,
 				B5D9EF461C35098900739753 /* BADatastore.h */,
 				B5D9EF471C35098900739753 /* BADatastore.m */,
 				B5D9EF481C35098900739753 /* BATokenStore.h */,
@@ -671,15 +699,18 @@
 				B56CE9CF1B9C1366006AAE86 /* BAAsyncTask.m in Sources */,
 				B5D9EF401C3504EA00739753 /* BARequest.m in Sources */,
 				B56CEA2A1B9C183D006AAE86 /* NSValueTransformer+BATransformers.m in Sources */,
+				B5A026C81C4634ED000653D6 /* BAUserDefaultsTokenStore.m in Sources */,
 				B56CEA1C1B9C183D006AAE86 /* NSError+BAErrors.m in Sources */,
 				B56CEA4E1B9C184F006AAE86 /* BAURLValueTransformer.m in Sources */,
 				B56CEA271B9C183D006AAE86 /* NSURL+BAImageURL.m in Sources */,
 				B56CEA451B9C184F006AAE86 /* BABlockValueTransformer.m in Sources */,
+				B5A026C71C4634ED000653D6 /* BAUserDefaults.m in Sources */,
 				B56CEA591B9C38DD006AAE86 /* BAOAuth2Token.m in Sources */,
 				B5D9EF441C3504EA00739753 /* BAResponseSerializer.m in Sources */,
 				B56CE9BA1B9BE3D4006AAE86 /* BAClient.m in Sources */,
 				B5D9EF421C3504EA00739753 /* BARequestSerializer.m in Sources */,
 				B56CEA561B9C2FD1006AAE86 /* BABaseAPI.m in Sources */,
+				B5A026C61C4634ED000653D6 /* BAKeychainTokenStore.m in Sources */,
 				B5B81D9C1B9BDC8C00D6588D /* main.m in Sources */,
 				B56CEA291B9C183D006AAE86 /* NSValueTransformer+BAConstants.m in Sources */,
 				B56CEA241B9C183D006AAE86 /* NSString+BARandom.m in Sources */,
@@ -688,6 +719,7 @@
 				B5D9EF411C3504EA00739753 /* BARequestFileData.m in Sources */,
 				B56CEA191B9C183D006AAE86 /* NSDateFormatter+BAAdditions.m in Sources */,
 				B56CEA1A1B9C183D006AAE86 /* NSDictionary+BAAdditions.m in Sources */,
+				B5A026C51C4634ED000653D6 /* BAKeychain.m in Sources */,
 				B5D9EF431C3504EA00739753 /* BAResponse.m in Sources */,
 				B56CE9DE1B9C1423006AAE86 /* BAModel.m in Sources */,
 				B56CEA251B9C183D006AAE86 /* NSString+BAURLEncode.m in Sources */,

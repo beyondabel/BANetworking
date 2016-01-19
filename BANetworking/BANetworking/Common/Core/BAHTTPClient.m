@@ -12,13 +12,8 @@
 #import "BASecurity.h"
 #import "BAMacros.h"
 
-static NSString * const kDefaultBaseURLString = @"https://api.jindanlicai.com";
+static NSString * const kDefaultBaseURLString = @"https://www.jindanlicai.com";
 static char * const kRequestProcessingQueueLabel = "com.jindanlicai.networingkit.httpclient.response_processing_queue";
-
-typedef NS_ENUM(NSUInteger, BAErrorCode) {
-    BAErrorCodeUnknown = 1000,
-    BAErrorCodeRequestFailed,
-};
 
 @interface BAHTTPClient () <NSURLSessionDelegate, NSURLSessionDownloadDelegate, NSURLSessionDataDelegate>
 

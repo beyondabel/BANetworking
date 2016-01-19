@@ -9,5 +9,10 @@
 #ifndef BAConstants_h
 #define BAConstants_h
 
+typedef NS_ENUM(NSUInteger, BAErrorCode) {
+    BAErrorCodeUnknown = 1000,
+    BAErrorCodeRequestFailed,
+};
+
 
 #endif /* BAConstants_h */

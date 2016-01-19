@@ -19,7 +19,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [BANetworking setupWithAPIKey:@"1" secret:@"2"];
+//    [BANetworking setupWithAPIKey:@"1" secret:@"2"];
     return YES;
 }
 
