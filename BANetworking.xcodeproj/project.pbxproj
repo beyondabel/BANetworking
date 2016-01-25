@@ -47,6 +47,8 @@
 		B5A026C61C4634ED000653D6 /* BAKeychainTokenStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A026BF1C4634ED000653D6 /* BAKeychainTokenStore.m */; };
 		B5A026C71C4634ED000653D6 /* BAUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A026C21C4634ED000653D6 /* BAUserDefaults.m */; };
 		B5A026C81C4634ED000653D6 /* BAUserDefaultsTokenStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A026C41C4634ED000653D6 /* BAUserDefaultsTokenStore.m */; };
+		B5B6328D1C50C23200C38191 /* NSURLRequest+BADescription.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B6328C1C50C23200C38191 /* NSURLRequest+BADescription.m */; };
+		B5B632901C50CA6200C38191 /* BAUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B6328F1C50CA6200C38191 /* BAUserModel.m */; };
 		B5B81D9C1B9BDC8C00D6588D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B81D9B1B9BDC8C00D6588D /* main.m */; };
 		B5B81D9F1B9BDC8C00D6588D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B81D9E1B9BDC8C00D6588D /* AppDelegate.m */; };
 		B5B81DA21B9BDC8C00D6588D /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B81DA11B9BDC8C00D6588D /* MasterViewController.m */; };
@@ -157,6 +159,10 @@
 		B5A026C21C4634ED000653D6 /* BAUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAUserDefaults.m; sourceTree = "<group>"; };
 		B5A026C31C4634ED000653D6 /* BAUserDefaultsTokenStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAUserDefaultsTokenStore.h; sourceTree = "<group>"; };
 		B5A026C41C4634ED000653D6 /* BAUserDefaultsTokenStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAUserDefaultsTokenStore.m; sourceTree = "<group>"; };
+		B5B6328B1C50C23200C38191 /* NSURLRequest+BADescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+BADescription.h"; sourceTree = "<group>"; };
+		B5B6328C1C50C23200C38191 /* NSURLRequest+BADescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+BADescription.m"; sourceTree = "<group>"; };
+		B5B6328E1C50CA6200C38191 /* BAUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAUserModel.h; sourceTree = "<group>"; };
+		B5B6328F1C50CA6200C38191 /* BAUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAUserModel.m; sourceTree = "<group>"; };
 		B5B81D961B9BDC8C00D6588D /* BANetworking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BANetworking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B81D9A1B9BDC8C00D6588D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5B81D9B1B9BDC8C00D6588D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -266,6 +272,8 @@
 				B56CE9DD1B9C1423006AAE86 /* BAModel.m */,
 				B56CEA571B9C38DD006AAE86 /* BAOAuth2Token.h */,
 				B56CEA581B9C38DD006AAE86 /* BAOAuth2Token.m */,
+				B5B6328E1C50CA6200C38191 /* BAUserModel.h */,
+				B5B6328F1C50CA6200C38191 /* BAUserModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -441,6 +449,8 @@
 		B56CEA0F1B9C183D006AAE86 /* NSURLRequest */ = {
 			isa = PBXGroup;
 			children = (
+				B5B6328B1C50C23200C38191 /* NSURLRequest+BADescription.h */,
+				B5B6328C1C50C23200C38191 /* NSURLRequest+BADescription.m */,
 				B56CEA101B9C183D006AAE86 /* NSMutableURLRequest+BAHeaders.h */,
 				B56CEA111B9C183D006AAE86 /* NSMutableURLRequest+BAHeaders.m */,
 			);
@@ -685,6 +695,7 @@
 				B56CEA211B9C183D006AAE86 /* NSSet+BAAdditions.m in Sources */,
 				B56CEA261B9C183D006AAE86 /* NSURL+BAAdditions.m in Sources */,
 				B56CEA481B9C184F006AAE86 /* BAModelValueTransformer.m in Sources */,
+				B5B632901C50CA6200C38191 /* BAUserModel.m in Sources */,
 				B56CEA471B9C184F006AAE86 /* BADictionaryMappingValueTransformer.m in Sources */,
 				B56CE9B71B9BE003006AAE86 /* BANetworking.m in Sources */,
 				B56CEA221B9C183D006AAE86 /* NSString+BAAdditions.m in Sources */,
@@ -716,6 +727,7 @@
 				B56CEA241B9C183D006AAE86 /* NSString+BARandom.m in Sources */,
 				B56CEA231B9C183D006AAE86 /* NSString+BABase64.m in Sources */,
 				B56CE9D21B9C1395006AAE86 /* BAMultipartFormData.m in Sources */,
+				B5B6328D1C50C23200C38191 /* NSURLRequest+BADescription.m in Sources */,
 				B5D9EF411C3504EA00739753 /* BARequestFileData.m in Sources */,
 				B56CEA191B9C183D006AAE86 /* NSDateFormatter+BAAdditions.m in Sources */,
 				B56CEA1A1B9C183D006AAE86 /* NSDictionary+BAAdditions.m in Sources */,

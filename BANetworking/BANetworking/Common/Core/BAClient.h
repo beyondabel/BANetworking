@@ -12,7 +12,7 @@
 
 extern NSString * const BAClientAuthenticationStateDidChangeNotification;
 
-@class BAOAuth2Token, BARequest;
+@class BAOAuth2Token, BARequest, BAUserModel;
 @protocol BATokenStore;
 
 @interface BAClient : NSObject
@@ -36,6 +36,11 @@ extern NSString * const BAClientAuthenticationStateDidChangeNotification;
  *  The current OAuth2 token used by the client. When not nil, the client is considered to be authenticated.
  */
 @property (nonatomic, strong, readwrite) BAOAuth2Token *oauthToken;
+
+/**
+ *  The current OAuth2 token used by the client. When not nil, the client is considered to be authenticated.
+ */
+@property (nonatomic, strong, readwrite) BAUserModel *userModel;
 
 /**
  *  A boolean indicating whether the client is currently authenticated, i.e. the oauthToken is non-nil.
@@ -126,17 +131,6 @@ extern NSString * const BAClientAuthenticationStateDidChangeNotification;
  *  @return The resulting task.
  */
 - (BAAsyncTask *)authenticateWithTransferToken:(NSString *)transferToken;
-
-/** Configure authentication parameters for authenticating the default client as an app.
- *
- * Instead of authenticating immediately, this method configures the default client to use the
- * app ID and token to authenticate once whenever a request is performed without the client being
- * authenticated.
- *
- * @param appID The id of the application to authenticate as.
- * @param appToken The app token string associated with the app.
- */
-//- (void)authenticateAutomaticallyAsAppWithID:(NSUInteger)appID token:(NSString *)appToken;
 
 /**
  *  Dispatches an HTTP request task for the provided request.
