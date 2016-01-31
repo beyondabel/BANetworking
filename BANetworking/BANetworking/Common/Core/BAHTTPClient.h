@@ -34,6 +34,9 @@ typedef void(^BARequestProgressBlock)(float progress, int64_t totalBytesExpected
  */
 @property (nonatomic, copy) NSString *userAgent;
 
+
+@property (nonatomic, assign) BOOL debugEnabled;
+
 /**
  *  The serializer of the request.
  */

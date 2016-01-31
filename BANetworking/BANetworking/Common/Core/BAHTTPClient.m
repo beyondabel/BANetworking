@@ -11,8 +11,9 @@
 #import "BAMultipartFormData.h"
 #import "BASecurity.h"
 #import "BAMacros.h"
+#import "NSURLRequest+BADescription.h"
 
-static NSString * const kDefaultBaseURLString = @"https://www.jindanlicai.com";
+static NSString * const kDefaultBaseURLString = @"http://192.168.31.200/";
 static char * const kRequestProcessingQueueLabel = "com.jindanlicai.networingkit.httpclient.response_processing_queue";
 
 @interface BAHTTPClient () <NSURLSessionDelegate, NSURLSessionDownloadDelegate, NSURLSessionDataDelegate>
@@ -106,6 +107,10 @@ static char * const kRequestProcessingQueueLabel = "com.jindanlicai.networingkit
         
         NSMutableURLRequest *URLRequest = [self.requestSerializer URLRequestForRequest:request multipartData:multipartData relativeToURL:self.baseURL];
         
+        if (self.debugEnabled) {
+            debug(@"URLRequest = %@ ", [URLRequest ba_description]);
+        }
+        
         BA_WEAK(self.responseSerializer) weakResponseSerializer = self.responseSerializer;
         responseProcessBlock = ^(NSURLResponse *URLResponse, NSData *data, BAURLSessionTaskDelegate *delegate) {
             return [weakResponseSerializer responseObjectForURLResponse:URLResponse data:data];
@@ -115,6 +120,9 @@ static char * const kRequestProcessingQueueLabel = "com.jindanlicai.networingkit
     } else {
         NSMutableURLRequest *URLRequest = [self.requestSerializer URLRequestForRequest:request relativeToURL:self.baseURL];
         
+        if (self.debugEnabled) {
+            debug(@"URLRequest = %@ ", [URLRequest ba_description]);
+        }
         if (request.fileData && request.method == BARequestMethodGET) {
             // Download task
             

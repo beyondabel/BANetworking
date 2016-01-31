@@ -12,6 +12,7 @@
 #import "BAClient.h"
 #import "BAAsyncTask.h"
 #import "BAModel.h"
+#import "BANetworking.h"
 
 @interface BAUser : BAModel
 
@@ -45,13 +46,28 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
 
-//    BARequest *request = [BARequest GETRequestWithPath:@"help_background" parameters:nil];
-    BARequest *request = [BARequest GETRequestWithURL:[NSURL URLWithString:@"http://lx.cdn.baidupcs.com/file/c57dd56cb36d8a290f3544d71d2c3cac?bkt=p2-qd-51&xcode=14028950a00a36c1732763df59e52bf6cbb9029b3648648bed03e924080ece4b&fid=3004343519-250528-1123010459727468&time=1453293802&sign=FDTAXGERLBH-DCb740ccc5511e5e8fedcff06b081203-z8La684JHJED2WAHmc%2B%2BoEi4ObI%3D&to=lc&fm=Nin,B,T,t&sta_dx=220&sta_cs=110&sta_ft=pdf&sta_ct=7&fm2=Ningbo,B,T,t&newver=1&newfm=1&secfm=1&flow_ver=3&pkey=1400c57dd56cb36d8a290f3544d71d2c3cac1265ae4c00000dc153f0&sl=75628622&expires=8h&rt=pr&r=516884902&mlogid=460689475081725023&vuk=3004343519&vbdid=4019177510&fin=%E3%80%8A%E7%99%BD%E5%B8%BD%E5%AD%90%E8%AE%B2Web%E5%AE%89%E5%85%A8%E3%80%8B220MB.pdf&fn=%E3%80%8A%E7%99%BD%E5%B8%BD%E5%AD%90%E8%AE%B2Web%E5%AE%89%E5%85%A8%E3%80%8B220MB.pdf&slt=pm&uta=0&rtype=1&iv=0&isw=0&dp-logid=460689475081725023&dp-callid=0.1.1"] parameters:nil];
+    // 配置开启网络调试模式
+    [BANetworking setDebugEnabled:YES];
+    
+//    BARequest *request = [BARequest POSTRequestWithPath:@"decode_info" parameters:@{@"info" : @"13328cb5f2be95b4ce5ee500679305cf", @"username" : @"abel"}];
+    BARequest *request = [BARequest POSTRequestWithURL:[NSURL URLWithString:@"http://pan.baidu.com/s/1geqCiWj"] parameters:nil];
+    
+//    BARequest *request = [BARequest GETRequestWithPath:@"hello" parameters:nil];
     [[[[BAClient currentClient] performRequest:request] onComplete:^(BAResponse *result, NSError *error) {
-        NSLog(@"help_background = %@", [[NSString alloc]initWithData:result.body encoding:NSUTF8StringEncoding]);
+//        NSLog(@"help_background = %@", [[NSString alloc]initWithData:result.body encoding:NSUTF8StringEncoding]);
+        NSLog(@" = %@",result.body);
     }] onProgress:^(float progress) {
         NSLog(@"progress = %f",progress);
     }];
+    
+    
+//    UIWebView *webview = nil;
+//    
+//    BARequest *baRequest = [BARequest GETRequestWithURL:[NSURL URLWithString:@"http://www.baidu.com"] parameters:nil];
+//    
+//    BARequestSerializer *requestSerializer = [[BARequestSerializer alloc] init];
+//    NSURLRequest *request = [requestSerializer URLRequestForRequest:baRequest relativeToURL:nil];
+//    [webview loadRequest:request];
 }
 
 - (void)didReceiveMemoryWarning {

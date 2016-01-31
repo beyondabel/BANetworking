@@ -25,6 +25,9 @@
     return [[BAClient currentClient] isAuthenticated];
 }
 
++ (void)setDebugEnabled:(BOOL)value {
+    [[BAClient currentClient] setDebugEnabled:value];
+}
 
 + (void)automaticallyStoreTokenInKeychainForServiceWithName:(NSString *)name {
     [BAClient currentClient].tokenStore = [[BAKeychainTokenStore alloc] initWithService:name];

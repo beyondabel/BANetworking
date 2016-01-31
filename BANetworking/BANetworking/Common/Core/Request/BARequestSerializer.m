@@ -13,6 +13,7 @@
 #import "NSString+BABase64.h"
 #import "NSURL+BAAdditions.h"
 #import "NSDictionary+BAQueryParameters.h"
+#import "NSURLRequest+BADescription.h"
 
 static NSString * const kHTTPMethodGET = @"GET";
 static NSString * const kHTTPMethodPOST = @"POST";

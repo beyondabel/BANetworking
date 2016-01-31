@@ -48,6 +48,11 @@ extern NSString * const BAClientAuthenticationStateDidChangeNotification;
 @property (nonatomic, assign, readonly) BOOL isAuthenticated;
 
 /**
+ *  A boolean indicating whether the debug request.
+ */
+@property (nonatomic, assign) BOOL debugEnabled;
+
+/**
  *  An optional token store. A token store is an abstraction on top of any kind of storage to which the OAuth token
  *  can be persisted, e.g. the Keychain. A token store implementation for the iOS and OS X keychain is provided
  *  by the BAKeychainTokenStore class.

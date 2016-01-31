@@ -15,3 +15,10 @@
 #else
 #define BA_IOS_SDK_AVAILABLE 0
 #endif
+
+
+#ifdef DEBUG
+#define debug(format, ...)  NSLog(format, ## __VA_ARGS__)
+#else
+#define debug(format, ...)
+#endif

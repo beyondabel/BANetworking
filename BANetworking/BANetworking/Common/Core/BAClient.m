@@ -117,7 +117,6 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
 - (id)init {
     BAHTTPClient *httpClient = [BAHTTPClient new];
     BAClient *client = [self initWithHTTPClient:httpClient];
-    
     return client;
 }
 
@@ -170,6 +169,10 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
     }
     
     return _pendingRequests;
+}
+
+- (void)setDebugEnabled:(BOOL)debugEnabled {
+    self.HTTPClient.debugEnabled = debugEnabled;
 }
 
 #pragma mark - Clients

@@ -29,12 +29,17 @@
  */
 + (BAAsyncTask *)authenticateAsUserWithAccount:(NSString *)account password:(NSString *)password;
 
-
 /** Informs the caller whether the default client is authenticated or not, i.e. has an active OAuth token.
  *
  * @return YES if the default client is authenticated, otherwise NO.
  */
 + (BOOL)isAuthenticated;
+
+/**
+ *  Configure the default Debug to NO
+ *  set the debug request.
+ */
++ (void)setDebugEnabled:(BOOL)value;
 
 /** Configure the default client to store the OAuth token in the user Keychain.
  *

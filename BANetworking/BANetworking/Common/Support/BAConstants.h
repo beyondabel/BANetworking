@@ -12,6 +12,7 @@
 typedef NS_ENUM(NSUInteger, BAErrorCode) {
     BAErrorCodeUnknown = 1000,
     BAErrorCodeRequestFailed,
+    BAErrorCodeAut = 10001,
 };
 
 
