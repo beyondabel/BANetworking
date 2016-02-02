@@ -49,10 +49,10 @@
     // 配置开启网络调试模式
     [BANetworking setDebugEnabled:YES];
     
-//    BARequest *request = [BARequest POSTRequestWithPath:@"decode_info" parameters:@{@"info" : @"13328cb5f2be95b4ce5ee500679305cf", @"username" : @"abel"}];
-    BARequest *request = [BARequest POSTRequestWithURL:[NSURL URLWithString:@"http://pan.baidu.com/s/1geqCiWj"] parameters:nil];
-    
-//    BARequest *request = [BARequest GETRequestWithPath:@"hello" parameters:nil];
+    BARequest *request = [BARequest POSTRequestWithPath:@"decode_info" parameters:@{@"info" : @"13328cb5f2be95b4ce5ee500679305cf", @"username" : @"abel"}];
+//    BARequest *request = [BARequest POSTRequestWithURL:[NSURL URLWithString:@"http://pan.baidu.com/s/1geqCiWj"] parameters:nil];
+//
+//    BARequest *request = [BARequest GETRequestWithPath:@"hello" parameters:@{@"username" : @"abel"}];
     [[[[BAClient currentClient] performRequest:request] onComplete:^(BAResponse *result, NSError *error) {
 //        NSLog(@"help_background = %@", [[NSString alloc]initWithData:result.body encoding:NSUTF8StringEncoding]);
         NSLog(@" = %@",result.body);
@@ -64,10 +64,9 @@
 //    UIWebView *webview = nil;
 //    
 //    BARequest *baRequest = [BARequest GETRequestWithURL:[NSURL URLWithString:@"http://www.baidu.com"] parameters:nil];
-//    
-//    BARequestSerializer *requestSerializer = [[BARequestSerializer alloc] init];
-//    NSURLRequest *request = [requestSerializer URLRequestForRequest:baRequest relativeToURL:nil];
-//    [webview loadRequest:request];
+//    NSURLRequest *request = [[BAClient currentClient] URLRequestForRequest:baRequest];
+//    UIWebView *webView = nil;
+//    [webView loadRequest:request];
 }
 
 - (void)didReceiveMemoryWarning {

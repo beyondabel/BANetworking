@@ -64,4 +64,6 @@ typedef void(^BARequestProgressBlock)(float progress, int64_t totalBytesExpected
  */
 - (NSURLSessionTask *)taskForRequest:(BARequest *)request progress:(BARequestProgressBlock)progress completion:(BARequestCompletionBlock)completion;
 
+- (NSMutableURLRequest *)URLRequestForRequest:(BARequest *)request;
+
 @end

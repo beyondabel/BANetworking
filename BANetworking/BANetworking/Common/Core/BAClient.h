@@ -146,6 +146,8 @@ extern NSString * const BAClientAuthenticationStateDidChangeNotification;
  */
 - (BAAsyncTask *)performRequest:(BARequest *)request;
 
+- (NSMutableURLRequest *)URLRequestForRequest:(BARequest *)request;
+
 /**
  *  Will attempt to restore the OAuth token from the current tokenStore if one has been configured.
  *

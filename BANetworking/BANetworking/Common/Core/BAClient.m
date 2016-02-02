@@ -297,6 +297,10 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
 
 #pragma mark - Requests
 
+- (NSMutableURLRequest *)URLRequestForRequest:(BARequest *)request {
+    return [self.HTTPClient URLRequestForRequest:request];
+}
+
 - (BAAsyncTask *)performRequest:(BARequest *)request {
     BAAsyncTask *task = nil;
     

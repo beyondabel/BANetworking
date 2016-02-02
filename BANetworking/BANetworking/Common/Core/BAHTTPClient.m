@@ -148,6 +148,10 @@ static char * const kRequestProcessingQueueLabel = "com.jindanlicai.networingkit
     return task;
 }
 
+- (NSMutableURLRequest *)URLRequestForRequest:(BARequest *)request {
+    return [self.requestSerializer URLRequestForRequest:request relativeToURL:_baseURL];
+}
+
 #pragma mark - NSURLSessionDelegate
 
 - (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *))completionHandler {
