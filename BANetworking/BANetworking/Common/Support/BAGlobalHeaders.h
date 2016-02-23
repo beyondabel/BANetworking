@@ -15,7 +15,7 @@
 #import "BAKeychain.h"
 #import "BAKeychainTokenStore.h"
 #import "BADatastore.h"
-
+#import "BANetworking.h"
 
 #import "BAOAuth2Token.h"
 

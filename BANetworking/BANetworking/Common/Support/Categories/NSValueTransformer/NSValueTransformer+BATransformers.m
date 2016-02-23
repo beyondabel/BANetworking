@@ -10,21 +10,25 @@
 #import "BAConstants.h"
 #import "BANumberValueTransformer.h"
 #import "BAURLValueTransformer.h"
+#import "BAModelValueTransformer.h"
 
 @implementation NSValueTransformer (BATransformers)
 
 + (NSValueTransformer *)ba_transformerWithBlock:(BAValueTransformationBlock)block {
-  return [BABlockValueTransformer transformerWithBlock:block];
+    return [BABlockValueTransformer transformerWithBlock:block];
 }
 
++ (NSValueTransformer *)ba_transformerWithModelClass:(Class)modelClass {
+    return [BAModelValueTransformer transformerWithModelClass:modelClass];
+}
 
 + (NSValueTransformer *)ba_URLTransformer {
-  return [BAURLValueTransformer new];
+    return [BAURLValueTransformer new];
 }
 
 
 + (NSValueTransformer *)ba_numberValueTransformer {
-  return [BANumberValueTransformer new];
+    return [BANumberValueTransformer new];
 }
 
 @end

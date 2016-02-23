@@ -146,6 +146,13 @@ extern NSString * const BAClientAuthenticationStateDidChangeNotification;
  */
 - (BAAsyncTask *)performRequest:(BARequest *)request;
 
+/**
+ *  Dispatches an HTTP request task for the provided request.
+ *
+ *  @param request    The request to perform.
+ *
+ *  @return The URL Request.
+ */
 - (NSMutableURLRequest *)URLRequestForRequest:(BARequest *)request;
 
 /**

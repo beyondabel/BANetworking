@@ -8,11 +8,9 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
-#import "BARequest.h"
-#import "BAClient.h"
-#import "BAAsyncTask.h"
-#import "BAModel.h"
-#import "BANetworking.h"
+#import "BAGlobalHeaders.h"
+#import "BAUserModel.h"
+#import "NSArray+BAAdditions.h"
 
 @interface BAUser : BAModel
 
@@ -49,24 +47,64 @@
     // 配置开启网络调试模式
     [BANetworking setDebugEnabled:YES];
     
-    BARequest *request = [BARequest POSTRequestWithPath:@"decode_info" parameters:@{@"info" : @"13328cb5f2be95b4ce5ee500679305cf", @"username" : @"abel"}];
-//    BARequest *request = [BARequest POSTRequestWithURL:[NSURL URLWithString:@"http://pan.baidu.com/s/1geqCiWj"] parameters:nil];
-//
+//    BARequest *request = [BARequest POSTRequestWithPath:@"decode_info" parameters:@{@"info" : @"13328cb5f2be95b4ce5ee500679305cf", @"username" : @"abel"}];
+////    BARequest *request = [BARequest POSTRequestWithURL:[NSURL URLWithString:@"http://pan.baidu.com/s/1geqCiWj"] parameters:nil];
+////
 //    BARequest *request = [BARequest GETRequestWithPath:@"hello" parameters:@{@"username" : @"abel"}];
-    [[[[BAClient currentClient] performRequest:request] onComplete:^(BAResponse *result, NSError *error) {
-//        NSLog(@"help_background = %@", [[NSString alloc]initWithData:result.body encoding:NSUTF8StringEncoding]);
-        NSLog(@" = %@",result.body);
-    }] onProgress:^(float progress) {
-        NSLog(@"progress = %f",progress);
-    }];
-    
+//    [[[[BAClient currentClient] performRequest:request] onComplete:^(BAResponse *result, NSError *error) {
+////        NSLog(@"help_background = %@", [[NSString alloc]initWithData:result.body encoding:NSUTF8StringEncoding]);
+//        
+//        
+//        
+//        NSArray *userModels = [result.body ba_mappedArrayWithBlock:^id(id obj) {
+//            return [[BAUserModel alloc] initWithDictionary:obj];
+//        }];
+//        
+////        for (NSDictionary *userDictionary in result.body) {
+////            BAUserModel *userModel = [[BAUserModel alloc] initWithDictionary:userDictionary];
+////            [userModels addObject:userModel];
+////        }
+//        
+//        
+//        NSLog(@" = %@",result.body);
+//    }] onProgress:^(float progress) {
+//        NSLog(@"progress = %f",progress);
+//    }];
+//    
     
 //    UIWebView *webview = nil;
 //    
 //    BARequest *baRequest = [BARequest GETRequestWithURL:[NSURL URLWithString:@"http://www.baidu.com"] parameters:nil];
 //    NSURLRequest *request = [[BAClient currentClient] URLRequestForRequest:baRequest];
-//    UIWebView *webView = nil;
-//    [webView loadRequest:request];
+//    [webview loadRequest:request];
+    
+    
+    
+    NSDictionary *result =
+     @{
+         @"user_id" : @(1001),
+         @"user_name" : @"BeyondAbel",
+         @"sex" : @"男",
+         @"app" :
+         @{
+             @"app_id" : @(3),
+             @"app_name" : @"金蛋理财",
+             @"link" : @"https://www.jindanlicai.com"
+         }
+     };
+}
+
+// 文件上传
+- (void)uploadFile {
+    BARequest *request = [BARequest POSTRequestWithPath:@"avatar" parameters:@{@"type" : @"avatar"}];
+    request.fileData = [BARequestFileData fileDataWithData:[NSData data] name:@"fileKey" fileName:@"fileName"];
+    [[[BAClient currentClient] performRequest:request] onComplete:^(id result, NSError *error) {
+        if (error) {
+            NSLog(@"文件上传出错");
+        } else {
+            NSLog(@"文件上传出错");
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

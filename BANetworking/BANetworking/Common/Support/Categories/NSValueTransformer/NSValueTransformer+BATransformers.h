@@ -13,4 +13,6 @@
 
 + (NSValueTransformer *)ba_transformerWithBlock:(BAValueTransformationBlock)block;
 
++ (NSValueTransformer *)ba_transformerWithModelClass:(Class)modelClass;
+
 @end

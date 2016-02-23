@@ -7,7 +7,36 @@
 //
 
 #import "BAUserModel.h"
+#import "NSValueTransformer+BATransformers.h"
 
 @implementation BAUserModel
+
++ (NSDictionary *)dictionaryKeyPathsForPropertyNames {
+    return @{
+             @"userID" : @"user_id",
+             @"userName" : @"user_name",
+             @"sex" : @"sex",
+             @"appModel" : @"app",
+             };
+}
+
++ (NSValueTransformer *)appModelValueTransformer {
+    return [NSValueTransformer ba_transformerWithModelClass:[BAAppModel class]];
+}
+
+@end
+
+
+@implementation BAAppModel
+
++ (NSDictionary *)dictionaryKeyPathsForPropertyNames {
+    return @{
+             @"appID" : @"app_id",
+             @"appName" : @"app_name",
+             @"link" : @"link",
+             };
+}
+
+
 
 @end

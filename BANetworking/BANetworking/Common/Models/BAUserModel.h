@@ -6,8 +6,25 @@
 //  Copyright © 2016年 abel. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "BAModel.h"
 
-@interface BAUserModel : NSObject
+@class BAAppModel;
+
+@interface BAUserModel : BAModel
+
+@property (nonatomic, assign, readonly) NSInteger userID;
+@property (nonatomic, strong, readonly) NSString *userName;
+@property (nonatomic, strong, readonly) NSString *sex;
+@property (nonatomic, strong, readonly) BAAppModel *appModel;
+
+@end
+
+
+
+@interface BAAppModel : BAModel
+
+@property (nonatomic, assign, readonly) NSInteger appID;
+@property (nonatomic, strong, readonly) NSString *appName;
+@property (nonatomic, strong, readonly) NSString *link;
 
 @end

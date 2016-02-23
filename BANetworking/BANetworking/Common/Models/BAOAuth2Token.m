@@ -65,4 +65,5 @@
     NSDate *date = [NSDate dateWithTimeIntervalSinceNow:expireInterval];
     return [self.expiresOn earlierDate:date] == self.expiresOn;
 }
+
 @end

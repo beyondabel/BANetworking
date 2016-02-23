@@ -11,7 +11,6 @@
 		B56CE9BA1B9BE3D4006AAE86 /* BAClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CE9B91B9BE3D4006AAE86 /* BAClient.m */; };
 		B56CE9BD1B9BE44B006AAE86 /* BAHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CE9BC1B9BE44B006AAE86 /* BAHTTPClient.m */; };
 		B56CE9CF1B9C1366006AAE86 /* BAAsyncTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CE9CE1B9C1366006AAE86 /* BAAsyncTask.m */; };
-		B56CE9D21B9C1395006AAE86 /* BAMultipartFormData.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CE9D11B9C1395006AAE86 /* BAMultipartFormData.m */; };
 		B56CE9D81B9C13CB006AAE86 /* BASecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CE9D71B9C13CB006AAE86 /* BASecurity.m */; };
 		B56CE9DB1B9C13EA006AAE86 /* BAURLSessionTaskDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CE9DA1B9C13EA006AAE86 /* BAURLSessionTaskDelegate.m */; };
 		B56CE9DE1B9C1423006AAE86 /* BAModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CE9DD1B9C1423006AAE86 /* BAModel.m */; };
@@ -43,6 +42,7 @@
 		B56CEA561B9C2FD1006AAE86 /* BABaseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CEA551B9C2FD1006AAE86 /* BABaseAPI.m */; };
 		B56CEA591B9C38DD006AAE86 /* BAOAuth2Token.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CEA581B9C38DD006AAE86 /* BAOAuth2Token.m */; };
 		B56CEA5F1B9C39A5006AAE86 /* BAAuthenticationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CEA5E1B9C39A5006AAE86 /* BAAuthenticationAPI.m */; };
+		B5769C881C62F4690063471E /* BAMultipartFormData.m in Sources */ = {isa = PBXBuildFile; fileRef = B5769C871C62F4690063471E /* BAMultipartFormData.m */; };
 		B5A026C51C4634ED000653D6 /* BAKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A026BD1C4634ED000653D6 /* BAKeychain.m */; };
 		B5A026C61C4634ED000653D6 /* BAKeychainTokenStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A026BF1C4634ED000653D6 /* BAKeychainTokenStore.m */; };
 		B5A026C71C4634ED000653D6 /* BAUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A026C21C4634ED000653D6 /* BAUserDefaults.m */; };
@@ -84,8 +84,6 @@
 		B56CE9BC1B9BE44B006AAE86 /* BAHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAHTTPClient.m; sourceTree = "<group>"; };
 		B56CE9CD1B9C1366006AAE86 /* BAAsyncTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAAsyncTask.h; sourceTree = "<group>"; };
 		B56CE9CE1B9C1366006AAE86 /* BAAsyncTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAAsyncTask.m; sourceTree = "<group>"; };
-		B56CE9D01B9C1395006AAE86 /* BAMultipartFormData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAMultipartFormData.h; sourceTree = "<group>"; };
-		B56CE9D11B9C1395006AAE86 /* BAMultipartFormData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAMultipartFormData.m; sourceTree = "<group>"; };
 		B56CE9D61B9C13CB006AAE86 /* BASecurity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BASecurity.h; sourceTree = "<group>"; };
 		B56CE9D71B9C13CB006AAE86 /* BASecurity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BASecurity.m; sourceTree = "<group>"; };
 		B56CE9D91B9C13EA006AAE86 /* BAURLSessionTaskDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAURLSessionTaskDelegate.h; sourceTree = "<group>"; };
@@ -151,6 +149,8 @@
 		B56CEA581B9C38DD006AAE86 /* BAOAuth2Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAOAuth2Token.m; sourceTree = "<group>"; };
 		B56CEA5D1B9C39A5006AAE86 /* BAAuthenticationAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAAuthenticationAPI.h; sourceTree = "<group>"; };
 		B56CEA5E1B9C39A5006AAE86 /* BAAuthenticationAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAAuthenticationAPI.m; sourceTree = "<group>"; };
+		B5769C861C62F4690063471E /* BAMultipartFormData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAMultipartFormData.h; sourceTree = "<group>"; };
+		B5769C871C62F4690063471E /* BAMultipartFormData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAMultipartFormData.m; sourceTree = "<group>"; };
 		B5A026BC1C4634ED000653D6 /* BAKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAKeychain.h; sourceTree = "<group>"; };
 		B5A026BD1C4634ED000653D6 /* BAKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAKeychain.m; sourceTree = "<group>"; };
 		B5A026BE1C4634ED000653D6 /* BAKeychainTokenStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAKeychainTokenStore.h; sourceTree = "<group>"; };
@@ -255,8 +255,6 @@
 				B56CE9BC1B9BE44B006AAE86 /* BAHTTPClient.m */,
 				B56CE9CD1B9C1366006AAE86 /* BAAsyncTask.h */,
 				B56CE9CE1B9C1366006AAE86 /* BAAsyncTask.m */,
-				B56CE9D01B9C1395006AAE86 /* BAMultipartFormData.h */,
-				B56CE9D11B9C1395006AAE86 /* BAMultipartFormData.m */,
 				B56CE9D61B9C13CB006AAE86 /* BASecurity.h */,
 				B56CE9D71B9C13CB006AAE86 /* BASecurity.m */,
 				B56CE9D91B9C13EA006AAE86 /* BAURLSessionTaskDelegate.h */,
@@ -555,6 +553,8 @@
 		B5D9EF341C3504EA00739753 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				B5769C861C62F4690063471E /* BAMultipartFormData.h */,
+				B5769C871C62F4690063471E /* BAMultipartFormData.m */,
 				B5D9EF351C3504EA00739753 /* BARequest.h */,
 				B5D9EF361C3504EA00739753 /* BARequest.m */,
 				B5D9EF371C3504EA00739753 /* BARequestFileData.h */,
@@ -726,7 +726,6 @@
 				B56CEA291B9C183D006AAE86 /* NSValueTransformer+BAConstants.m in Sources */,
 				B56CEA241B9C183D006AAE86 /* NSString+BARandom.m in Sources */,
 				B56CEA231B9C183D006AAE86 /* NSString+BABase64.m in Sources */,
-				B56CE9D21B9C1395006AAE86 /* BAMultipartFormData.m in Sources */,
 				B5B6328D1C50C23200C38191 /* NSURLRequest+BADescription.m in Sources */,
 				B5D9EF411C3504EA00739753 /* BARequestFileData.m in Sources */,
 				B56CEA191B9C183D006AAE86 /* NSDateFormatter+BAAdditions.m in Sources */,
@@ -740,6 +739,7 @@
 				B5B81DA51B9BDC8C00D6588D /* DetailViewController.m in Sources */,
 				B56CE9BD1B9BE44B006AAE86 /* BAHTTPClient.m in Sources */,
 				B56CE9DB1B9C13EA006AAE86 /* BAURLSessionTaskDelegate.m in Sources */,
+				B5769C881C62F4690063471E /* BAMultipartFormData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

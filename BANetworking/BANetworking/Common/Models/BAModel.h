@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BAModel : NSObject
+@interface BAModel : NSObject <NSCoding>
 
 /**
  *  Creates an instance with values from the provided dictionary, using the mapping dictionary returned
