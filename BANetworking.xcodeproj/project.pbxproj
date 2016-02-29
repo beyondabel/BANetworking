@@ -43,6 +43,8 @@
 		B56CEA591B9C38DD006AAE86 /* BAOAuth2Token.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CEA581B9C38DD006AAE86 /* BAOAuth2Token.m */; };
 		B56CEA5F1B9C39A5006AAE86 /* BAAuthenticationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CEA5E1B9C39A5006AAE86 /* BAAuthenticationAPI.m */; };
 		B5769C881C62F4690063471E /* BAMultipartFormData.m in Sources */ = {isa = PBXBuildFile; fileRef = B5769C871C62F4690063471E /* BAMultipartFormData.m */; };
+		B58CC2821C81F4B900EF2210 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B58CC27F1C81F4B900EF2210 /* DetailViewController.m */; };
+		B58CC2831C81F4B900EF2210 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B58CC2811C81F4B900EF2210 /* MasterViewController.m */; };
 		B5A026C51C4634ED000653D6 /* BAKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A026BD1C4634ED000653D6 /* BAKeychain.m */; };
 		B5A026C61C4634ED000653D6 /* BAKeychainTokenStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A026BF1C4634ED000653D6 /* BAKeychainTokenStore.m */; };
 		B5A026C71C4634ED000653D6 /* BAUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A026C21C4634ED000653D6 /* BAUserDefaults.m */; };
@@ -51,8 +53,6 @@
 		B5B632901C50CA6200C38191 /* BAUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B6328F1C50CA6200C38191 /* BAUserModel.m */; };
 		B5B81D9C1B9BDC8C00D6588D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B81D9B1B9BDC8C00D6588D /* main.m */; };
 		B5B81D9F1B9BDC8C00D6588D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B81D9E1B9BDC8C00D6588D /* AppDelegate.m */; };
-		B5B81DA21B9BDC8C00D6588D /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B81DA11B9BDC8C00D6588D /* MasterViewController.m */; };
-		B5B81DA51B9BDC8C00D6588D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B81DA41B9BDC8C00D6588D /* DetailViewController.m */; };
 		B5B81DA81B9BDC8C00D6588D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5B81DA61B9BDC8C00D6588D /* Main.storyboard */; };
 		B5B81DAA1B9BDC8C00D6588D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B81DA91B9BDC8C00D6588D /* Images.xcassets */; };
 		B5B81DAD1B9BDC8C00D6588D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5B81DAB1B9BDC8C00D6588D /* LaunchScreen.xib */; };
@@ -151,6 +151,10 @@
 		B56CEA5E1B9C39A5006AAE86 /* BAAuthenticationAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAAuthenticationAPI.m; sourceTree = "<group>"; };
 		B5769C861C62F4690063471E /* BAMultipartFormData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAMultipartFormData.h; sourceTree = "<group>"; };
 		B5769C871C62F4690063471E /* BAMultipartFormData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAMultipartFormData.m; sourceTree = "<group>"; };
+		B58CC27E1C81F4B900EF2210 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		B58CC27F1C81F4B900EF2210 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		B58CC2801C81F4B900EF2210 /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		B58CC2811C81F4B900EF2210 /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		B5A026BC1C4634ED000653D6 /* BAKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAKeychain.h; sourceTree = "<group>"; };
 		B5A026BD1C4634ED000653D6 /* BAKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAKeychain.m; sourceTree = "<group>"; };
 		B5A026BE1C4634ED000653D6 /* BAKeychainTokenStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAKeychainTokenStore.h; sourceTree = "<group>"; };
@@ -168,10 +172,6 @@
 		B5B81D9B1B9BDC8C00D6588D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B5B81D9D1B9BDC8C00D6588D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B5B81D9E1B9BDC8C00D6588D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B5B81DA01B9BDC8C00D6588D /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		B5B81DA11B9BDC8C00D6588D /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		B5B81DA31B9BDC8C00D6588D /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		B5B81DA41B9BDC8C00D6588D /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		B5B81DA71B9BDC8C00D6588D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B5B81DA91B9BDC8C00D6588D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B5B81DAC1B9BDC8C00D6588D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -466,6 +466,25 @@
 			path = NSValueTransformer;
 			sourceTree = "<group>";
 		};
+		B58CC27C1C81F4B900EF2210 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				B58CC27D1C81F4B900EF2210 /* ViewContrllers */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		B58CC27D1C81F4B900EF2210 /* ViewContrllers */ = {
+			isa = PBXGroup;
+			children = (
+				B58CC27E1C81F4B900EF2210 /* DetailViewController.h */,
+				B58CC27F1C81F4B900EF2210 /* DetailViewController.m */,
+				B58CC2801C81F4B900EF2210 /* MasterViewController.h */,
+				B58CC2811C81F4B900EF2210 /* MasterViewController.m */,
+			);
+			path = ViewContrllers;
+			sourceTree = "<group>";
+		};
 		B5A026BB1C4634ED000653D6 /* Keychain */ = {
 			isa = PBXGroup;
 			children = (
@@ -509,13 +528,10 @@
 		B5B81D981B9BDC8C00D6588D /* BANetworking */ = {
 			isa = PBXGroup;
 			children = (
+				B58CC27C1C81F4B900EF2210 /* Class */,
 				B56CE9AE1B9BDEAF006AAE86 /* BANetworking */,
 				B5B81D9D1B9BDC8C00D6588D /* AppDelegate.h */,
 				B5B81D9E1B9BDC8C00D6588D /* AppDelegate.m */,
-				B5B81DA01B9BDC8C00D6588D /* MasterViewController.h */,
-				B5B81DA11B9BDC8C00D6588D /* MasterViewController.m */,
-				B5B81DA31B9BDC8C00D6588D /* DetailViewController.h */,
-				B5B81DA41B9BDC8C00D6588D /* DetailViewController.m */,
 				B5B81DA61B9BDC8C00D6588D /* Main.storyboard */,
 				B5B81DA91B9BDC8C00D6588D /* Images.xcassets */,
 				B5B81DAB1B9BDC8C00D6588D /* LaunchScreen.xib */,
@@ -690,6 +706,7 @@
 			files = (
 				B56CEA201B9C183D006AAE86 /* NSObject+BAIntrospection.m in Sources */,
 				B5B81D9F1B9BDC8C00D6588D /* AppDelegate.m in Sources */,
+				B58CC2821C81F4B900EF2210 /* DetailViewController.m in Sources */,
 				B56CEA1D1B9C183D006AAE86 /* NSFileManager+BAAdditions.m in Sources */,
 				B56CE9D81B9C13CB006AAE86 /* BASecurity.m in Sources */,
 				B56CEA211B9C183D006AAE86 /* NSSet+BAAdditions.m in Sources */,
@@ -706,7 +723,6 @@
 				B56CEA5F1B9C39A5006AAE86 /* BAAuthenticationAPI.m in Sources */,
 				B56CEA181B9C183D006AAE86 /* NSDate+BAAdditions.m in Sources */,
 				B56CEA1B1B9C183D006AAE86 /* NSDictionary+BAQueryParameters.m in Sources */,
-				B5B81DA21B9BDC8C00D6588D /* MasterViewController.m in Sources */,
 				B56CE9CF1B9C1366006AAE86 /* BAAsyncTask.m in Sources */,
 				B5D9EF401C3504EA00739753 /* BARequest.m in Sources */,
 				B56CEA2A1B9C183D006AAE86 /* NSValueTransformer+BATransformers.m in Sources */,
@@ -716,6 +732,7 @@
 				B56CEA271B9C183D006AAE86 /* NSURL+BAImageURL.m in Sources */,
 				B56CEA451B9C184F006AAE86 /* BABlockValueTransformer.m in Sources */,
 				B5A026C71C4634ED000653D6 /* BAUserDefaults.m in Sources */,
+				B58CC2831C81F4B900EF2210 /* MasterViewController.m in Sources */,
 				B56CEA591B9C38DD006AAE86 /* BAOAuth2Token.m in Sources */,
 				B5D9EF441C3504EA00739753 /* BAResponseSerializer.m in Sources */,
 				B56CE9BA1B9BE3D4006AAE86 /* BAClient.m in Sources */,
@@ -736,7 +753,6 @@
 				B56CEA251B9C183D006AAE86 /* NSString+BAURLEncode.m in Sources */,
 				B56CEA281B9C183D006AAE86 /* NSMutableURLRequest+BAHeaders.m in Sources */,
 				B56CEA1E1B9C183D006AAE86 /* NSNumber+BAAdditions.m in Sources */,
-				B5B81DA51B9BDC8C00D6588D /* DetailViewController.m in Sources */,
 				B56CE9BD1B9BE44B006AAE86 /* BAHTTPClient.m in Sources */,
 				B56CE9DB1B9C13EA006AAE86 /* BAURLSessionTaskDelegate.m in Sources */,
 				B5769C881C62F4690063471E /* BAMultipartFormData.m in Sources */,

@@ -44,54 +44,12 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
 
-    // 配置开启网络调试模式
-    [BANetworking setDebugEnabled:YES];
     
-//    BARequest *request = [BARequest POSTRequestWithPath:@"decode_info" parameters:@{@"info" : @"13328cb5f2be95b4ce5ee500679305cf", @"username" : @"abel"}];
-////    BARequest *request = [BARequest POSTRequestWithURL:[NSURL URLWithString:@"http://pan.baidu.com/s/1geqCiWj"] parameters:nil];
-////
-//    BARequest *request = [BARequest GETRequestWithPath:@"hello" parameters:@{@"username" : @"abel"}];
-//    [[[[BAClient currentClient] performRequest:request] onComplete:^(BAResponse *result, NSError *error) {
-////        NSLog(@"help_background = %@", [[NSString alloc]initWithData:result.body encoding:NSUTF8StringEncoding]);
-//        
-//        
-//        
-//        NSArray *userModels = [result.body ba_mappedArrayWithBlock:^id(id obj) {
-//            return [[BAUserModel alloc] initWithDictionary:obj];
-//        }];
-//        
-////        for (NSDictionary *userDictionary in result.body) {
-////            BAUserModel *userModel = [[BAUserModel alloc] initWithDictionary:userDictionary];
-////            [userModels addObject:userModel];
-////        }
-//        
-//        
-//        NSLog(@" = %@",result.body);
-//    }] onProgress:^(float progress) {
-//        NSLog(@"progress = %f",progress);
+  
+//    BARequest * request = [BARequest POSTRequestWithPath:@"random" parameters:@{@"userName" : @"BeyondAbel", @"age" : @[@16,@10]}];
+//    [[[BAClient currentClient] performRequest:request] onComplete:^(BAResponse *result, NSError *error) {
+//        debug(@"%@", [[NSString alloc] initWithData:result.body encoding:4]);
 //    }];
-//    
-    
-//    UIWebView *webview = nil;
-//    
-//    BARequest *baRequest = [BARequest GETRequestWithURL:[NSURL URLWithString:@"http://www.baidu.com"] parameters:nil];
-//    NSURLRequest *request = [[BAClient currentClient] URLRequestForRequest:baRequest];
-//    [webview loadRequest:request];
-    
-    
-    
-    NSDictionary *result =
-     @{
-         @"user_id" : @(1001),
-         @"user_name" : @"BeyondAbel",
-         @"sex" : @"男",
-         @"app" :
-         @{
-             @"app_id" : @(3),
-             @"app_name" : @"金蛋理财",
-             @"link" : @"https://www.jindanlicai.com"
-         }
-     };
 }
 
 // 文件上传

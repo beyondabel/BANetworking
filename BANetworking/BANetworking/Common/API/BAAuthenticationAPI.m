@@ -11,7 +11,7 @@
 @implementation BAAuthenticationAPI
 
 + (BARequest *)requestForAuthenticationWithEmail:(NSString *)email password:(NSString *)password {
-    return nil;
+    return [BARequest POSTRequestWithPath:@"hello" parameters:nil];
 }
 
 

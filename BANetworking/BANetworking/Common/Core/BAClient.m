@@ -261,7 +261,7 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
     
     self.authenticationTask = [[self performTaskWithRequest:request] then:^(BAResponse *response, NSError *error) {
         BA_STRONG(weakSelf) strongSelf = weakSelf;
-        
+        debug(@"%@", response.body);
         if (!error) {
             strongSelf.oauthToken = [[BAOAuth2Token alloc] initWithDictionary:response.body];
         } else if ([error ba_isServerError]) {
@@ -448,8 +448,10 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
 }
 
 - (BAAsyncTask *)refreshToken {
-    NSAssert([self.oauthToken.refreshToken length] > 0, @"Can't refresh session, refresh token is missing.");
-    
+//    NSAssert([self.oauthToken.refreshToken length] > 0, @"Can't refresh session, refresh token is missing.");
+    if (self.oauthToken.refreshToken.length == 0) {
+        return nil;
+    }
     BAAsyncTask *task = [self refreshTokenWithRefreshToken:self.oauthToken.refreshToken];
     
     BA_WEAK_SELF weakSelf = self;

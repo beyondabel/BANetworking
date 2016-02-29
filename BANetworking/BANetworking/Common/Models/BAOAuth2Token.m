@@ -45,11 +45,7 @@
 
 + (NSDictionary *)dictionaryKeyPathsForPropertyNames {
     return @{
-             @"accessToken": @"access_token",
-             @"refreshToken": @"refresh_token",
-             @"transferToken": @"transfer_token",
-             @"expiresOn": @"expires_in",
-             @"refData": @"ref",
+             @"accessToken": @"token",
              };
 }
 
@@ -62,6 +58,7 @@
 #pragma mark - Public
 
 - (BOOL)willExpireWithinIntervalFromNow:(NSTimeInterval)expireInterval {
+    return NO;
     NSDate *date = [NSDate dateWithTimeIntervalSinceNow:expireInterval];
     return [self.expiresOn earlierDate:date] == self.expiresOn;
 }
