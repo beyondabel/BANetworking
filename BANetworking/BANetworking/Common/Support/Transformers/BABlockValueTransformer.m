@@ -17,30 +17,30 @@
 @implementation BABlockValueTransformer
 
 - (instancetype)init {
-  return [self initWithBlock:nil];
+    return [self initWithBlock:nil];
 }
 
 - (instancetype)initWithBlock:(BAValueTransformationBlock)block {
-  self = [super init];
-  if (!self) return nil;
-  
-  _transformBlock = [block copy];
-  
-  return self;
+    self = [super init];
+    if (!self) return nil;
+    
+    _transformBlock = [block copy];
+    
+    return self;
 }
 
 + (instancetype)transformerWithBlock:(BAValueTransformationBlock)block {
-  return [[self alloc] initWithBlock:block];
+    return [[self alloc] initWithBlock:block];
 }
 
 #pragma mark - NSValueTransformer
 
 + (BOOL)allowsReverseTransformation {
-  return NO;
+    return NO;
 }
 
 - (id)transformedValue:(id)value {
-  return self.transformBlock ? self.transformBlock(value) : nil;
+    return self.transformBlock ? self.transformBlock(value) : nil;
 }
 
 @end

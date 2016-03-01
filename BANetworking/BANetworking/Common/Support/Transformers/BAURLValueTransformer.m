@@ -11,9 +11,9 @@
 @implementation BAURLValueTransformer
 
 - (instancetype)init {
-  return [super initWithBlock:^id(NSString *URLString) {
-    return [NSURL URLWithString:URLString];
-  }];
+    return [super initWithBlock:^id(NSString *URLString) {
+        return [NSURL URLWithString:URLString];
+    }];
 }
 
 @end

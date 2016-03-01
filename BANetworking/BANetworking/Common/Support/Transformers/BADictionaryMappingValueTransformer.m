@@ -20,47 +20,47 @@
 @synthesize reverseMappingDictionary = _reverseMappingDictionary;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
-  self = [super init];
-  if (!self) return nil;
-  
-  _mappingDictionary = [dictionary copy];
-  
-  return self;
+    self = [super init];
+    if (!self) return nil;
+    
+    _mappingDictionary = [dictionary copy];
+    
+    return self;
 }
 
 + (instancetype)transformerWithDictionary:(NSDictionary *)dictionary {
-  return [[self alloc] initWithDictionary:dictionary];
+    return [[self alloc] initWithDictionary:dictionary];
 }
 
 #pragma mark - Properties
 
 - (NSDictionary *)reverseMappingDictionary {
-  if (!_reverseMappingDictionary) {
-    NSMutableDictionary *mutReverseDictionary = [NSMutableDictionary dictionary];
-    [self.mappingDictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-      if ([obj conformsToProtocol:@protocol(NSCopying)]) {
-        mutReverseDictionary[obj] = key;
-      }
-    }];
+    if (!_reverseMappingDictionary) {
+        NSMutableDictionary *mutReverseDictionary = [NSMutableDictionary dictionary];
+        [self.mappingDictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            if ([obj conformsToProtocol:@protocol(NSCopying)]) {
+                mutReverseDictionary[obj] = key;
+            }
+        }];
+        
+        _reverseMappingDictionary = [mutReverseDictionary copy];
+    }
     
-    _reverseMappingDictionary = [mutReverseDictionary copy];
-  }
-  
-  return _reverseMappingDictionary;
+    return _reverseMappingDictionary;
 }
 
 #pragma mark - NSValueTransformer
 
 + (BOOL)allowsReverseTransformation {
-  return YES;
+    return YES;
 }
 
 - (id)transformedValue:(id)value {
-  return self.mappingDictionary[value];
+    return self.mappingDictionary[value];
 }
 
 - (id)reverseTransformedValue:(id)value {
-  return self.reverseMappingDictionary[value];
+    return self.reverseMappingDictionary[value];
 }
 
 @end

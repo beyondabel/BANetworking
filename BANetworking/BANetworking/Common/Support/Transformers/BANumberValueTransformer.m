@@ -1,5 +1,5 @@
 //
-//  BANumberValueTransformer 
+//  BANumberValueTransformer
 //  BANetworking
 //
 //  Created by abel on 15/9/6.
@@ -15,23 +15,23 @@
 #pragma mark - NSValueTransformer
 
 + (BOOL)allowsReverseTransformation {
-  return YES;
+    return YES;
 }
 
 - (id)reverseTransformedValue:(id)value {
-  if (![value isKindOfClass:[NSNumber class]]) {
-       return nil;
-  }
-
-  return [(NSNumber *)value ba_USNumberString];
+    if (![value isKindOfClass:[NSNumber class]]) {
+        return nil;
+    }
+    
+    return [(NSNumber *)value ba_USNumberString];
 }
 
 - (id)transformedValue:(id)value {
-  if (![value isKindOfClass:[NSString class]]) {
-    return nil;
-  }
-
-  return [NSNumber ba_numberFromUSNumberString:value];
+    if (![value isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    return [NSNumber ba_numberFromUSNumberString:value];
 }
 
 
