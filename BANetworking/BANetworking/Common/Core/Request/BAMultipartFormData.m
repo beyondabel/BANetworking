@@ -7,7 +7,7 @@
 //
 
 #import "BAMultipartFormData.h"
-#import "NSString+BARandom.h"
+#import "NSString+BAAdditions.h"
 #import "NSDictionary+BAQueryParameters.h"
 
 @interface BAMultipartFormData ()

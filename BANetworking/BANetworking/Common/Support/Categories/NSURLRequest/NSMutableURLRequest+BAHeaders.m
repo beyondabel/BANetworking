@@ -7,7 +7,7 @@
 //
 
 #import "NSMutableURLRequest+BAHeaders.h"
-#import "NSString+BABase64.h"
+#import "NSString+BAAdditions.h"
 
 static NSString * const kHeaderAuthorization = @"Authorization";
 static NSString * const kAuthorizationOAuth2AccessTokenFormat = @"OAuth2 %@";

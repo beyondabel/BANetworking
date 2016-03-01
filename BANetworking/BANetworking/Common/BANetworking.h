@@ -12,13 +12,6 @@
 
 @interface BANetworking : NSObject
 
-/** Configure the default client with oauth2.0 key/secret pair.
- *
- * @param key The platform API key
- * @param secret The platform API secret matching the key
- */
-+ (void)setupWithAPIKey:(NSString *)key secret:(NSString *)secret;
-
 /** Authenticate the default client as a user with an email and password.
  *
  * @param email The user's email address

@@ -1,5 +1,5 @@
 //
-//  NSNumberFormatter(BAAdditions) 
+//  NSNumberFormatter(BAAdditions)
 //  BANetworking
 //
 //  Created by abel on 15/9/6.
@@ -12,12 +12,12 @@
 @implementation NSNumberFormatter (BAAdditions)
 
 + (NSNumberFormatter *)ba_USNumberFormatter {
-  NSNumberFormatter *formatter = [NSNumberFormatter new];
-  formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-  formatter.numberStyle = NSNumberFormatterDecimalStyle;
-  formatter.usesGroupingSeparator = NO;
-
-  return formatter;
+    NSNumberFormatter *formatter = [NSNumberFormatter new];
+    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    formatter.numberStyle = NSNumberFormatterDecimalStyle;
+    formatter.usesGroupingSeparator = NO;
+    
+    return formatter;
 }
 
 @end

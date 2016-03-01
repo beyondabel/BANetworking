@@ -6,28 +6,10 @@
 //  Copyright © 2015年 abel. All rights reserved.
 //
 
-#import "BAOAuth2Token.h"
+#import "BAAuthenticatedUserModel.h"
 #import "NSValueTransformer+BATransformers.h"
 
-@implementation BAOAuth2Token
-
-
-- (instancetype)initWithAccessToken:(NSString *)accessToken
-                       refreshToken:(NSString *)refreshToken
-                      transferToken:(NSString *)transferToken
-                          expiresOn:(NSDate *)expiresOn
-                            refData:(NSDictionary *)refData {
-    self = [super init];
-    if (!self) return nil;
-    
-    _accessToken = [accessToken copy];
-    _refreshToken = [refreshToken copy];
-    _transferToken = [transferToken copy];
-    _expiresOn = [expiresOn copy];
-    _refData = [refData copy];
-    
-    return self;
-}
+@implementation BAAuthenticatedUserModel
 
 #pragma mark - NSObject
 
@@ -58,7 +40,6 @@
 #pragma mark - Public
 
 - (BOOL)willExpireWithinIntervalFromNow:(NSTimeInterval)expireInterval {
-    return NO;
     NSDate *date = [NSDate dateWithTimeIntervalSinceNow:expireInterval];
     return [self.expiresOn earlierDate:date] == self.expiresOn;
 }

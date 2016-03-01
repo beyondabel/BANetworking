@@ -9,7 +9,6 @@
 #import "MasterViewController.h"
 #import "DetailViewController.h"
 #import "BAGlobalHeaders.h"
-#import "BAUserModel.h"
 #import "NSArray+BAAdditions.h"
 
 @interface BAUser : BAModel

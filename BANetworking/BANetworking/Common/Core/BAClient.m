@@ -7,7 +7,7 @@
 //
 
 #import "BAClient.h"
-#import "BAOAuth2Token.h"
+#import "BAAuthenticatedUserModel.h"
 #import "BATokenStore.h"
 #import "BAAuthenticationAPI.h"
 #import "BAMacros.h"
@@ -90,8 +90,6 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
 
 @interface BAClient ()
 
-@property (nonatomic, copy, readwrite) NSString *apiKey;
-@property (nonatomic, copy, readwrite) NSString *apiSecret;
 @property (nonatomic, weak, readwrite) BAAsyncTask *authenticationTask;
 @property (nonatomic, strong, readwrite) BARequest *savedAuthenticationRequest;
 @property (nonatomic, strong, readonly) NSMutableOrderedSet *pendingRequests;
@@ -135,13 +133,6 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
     }
 }
 
-- (instancetype)initWithAPIKey:(NSString *)key secret:(NSString *)secret {
-    BAClient *client = [self init];
-    [client setupWithAPIKey:key secret:secret];
-    
-    return client;
-}
-
 - (void)dealloc {
     [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(isAuthenticated)) context:kIsAuthenticatedContext];
 }
@@ -152,7 +143,7 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
     return self.oauthToken != nil;
 }
 
-- (void)setOauthToken:(BAOAuth2Token *)oauthToken {
+- (void)setOauthToken:(BAAuthenticatedUserModel *)oauthToken {
     if (oauthToken == _oauthToken) return;
     
     NSString *isAuthenticatedKey = NSStringFromSelector(@selector(isAuthenticated));
@@ -171,9 +162,7 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
     return _pendingRequests;
 }
 
-- (void)setDebugEnabled:(BOOL)debugEnabled {
-    self.HTTPClient.debugEnabled = debugEnabled;
-}
+
 
 #pragma mark - Clients
 
@@ -208,15 +197,8 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
 }
 
 #pragma mark - Configuration
-
-- (void)setupWithAPIKey:(NSString *)key secret:(NSString *)secret {
-    NSParameterAssert(key);
-    NSParameterAssert(secret);
-    
-    self.apiKey = key;
-    self.apiSecret = secret;
-    
-    [self updateAuthorizationHeader:self.isAuthenticated];
+- (void)setDebugEnabled:(BOOL)debugEnabled {
+    self.HTTPClient.debugEnabled = debugEnabled;
 }
 
 #pragma mark - Authentication
@@ -249,21 +231,11 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
     
     BA_WEAK_SELF weakSelf = self;
     
-    // Always use basic authentication for authentication requests
-    request.URLRequestConfigurationBlock = ^NSURLRequest *(NSURLRequest *urlRequest) {
-        BA_STRONG(weakSelf) strongSelf = weakSelf;
-        
-        NSMutableURLRequest *mutURLRequest = [urlRequest mutableCopy];
-        [mutURLRequest ba_setAuthorizationHeaderWithUsername:strongSelf.apiKey password:strongSelf.apiSecret];
-        
-        return [mutURLRequest copy];
-    };
-    
     self.authenticationTask = [[self performTaskWithRequest:request] then:^(BAResponse *response, NSError *error) {
         BA_STRONG(weakSelf) strongSelf = weakSelf;
         debug(@"%@", response.body);
         if (!error) {
-            strongSelf.oauthToken = [[BAOAuth2Token alloc] initWithDictionary:response.body];
+            strongSelf.oauthToken = [[BAAuthenticatedUserModel alloc] initWithDictionary:response.body];
         } else if ([error ba_isServerError]) {
             // If authentication failed server side, reset the token since it isn't likely
             // to be successful next time either. If it is NOT a server side error, it might
@@ -414,15 +386,19 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
 - (void)updateAuthorizationHeader:(BOOL)isAuthenticated {
     if (isAuthenticated) {
         [self.HTTPClient.requestSerializer setAuthorizationHeaderWithOAuth2AccessToken:self.oauthToken.accessToken];
-    } else if (self.apiKey && self.apiSecret) {
-        [self.HTTPClient.requestSerializer setAuthorizationHeaderWithAPIKey:self.apiKey secret:self.apiSecret];
+    }
+}
+
+- (void)updateHTTPHeader:(NSDictionary *)HTTPHeaderDictionary {
+    for (NSString *key in HTTPHeaderDictionary) {
+        [self.HTTPClient.requestSerializer setValue:HTTPHeaderDictionary[key] forKey:key];
     }
 }
 
 - (void)updateStoredToken {
     if (!self.tokenStore) return;
     
-    BAOAuth2Token *token = self.oauthToken;
+    BAAuthenticatedUserModel *token = self.oauthToken;
     if (token) {
         [self.tokenStore storeToken:token];
     } else {
@@ -448,11 +424,7 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
 }
 
 - (BAAsyncTask *)refreshToken {
-//    NSAssert([self.oauthToken.refreshToken length] > 0, @"Can't refresh session, refresh token is missing.");
-    if (self.oauthToken.refreshToken.length == 0) {
-        return nil;
-    }
-    BAAsyncTask *task = [self refreshTokenWithRefreshToken:self.oauthToken.refreshToken];
+    BAAsyncTask *task = [self refreshTokenWithRefreshToken:self.oauthToken.accessToken];
     
     BA_WEAK_SELF weakSelf = self;
     

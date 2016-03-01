@@ -10,6 +10,12 @@
 
 @interface NSString (BAAdditions)
 
++ (instancetype)ba_randomHexStringOfLength:(NSUInteger)length;
+
 - (BOOL)ba_containsString:(NSString *)string;
+
+- (NSString *)ba_base64String;
+
+
 
 @end

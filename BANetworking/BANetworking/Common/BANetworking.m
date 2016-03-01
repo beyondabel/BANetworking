@@ -13,10 +13,6 @@
 
 @implementation BANetworking
 
-+ (void)setupWithAPIKey:(NSString *)key secret:(NSString *)secret {
-    [[BAClient currentClient] setupWithAPIKey:key secret:secret];
-}
-
 + (BAAsyncTask *)authenticateAsUserWithAccount:(NSString *)account password:(NSString *)password {
     return [[BAClient currentClient] authenticateAsUserWithEmail:account password:password];
 }

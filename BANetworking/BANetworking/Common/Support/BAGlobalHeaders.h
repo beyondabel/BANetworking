@@ -17,7 +17,7 @@
 #import "BADatastore.h"
 #import "BANetworking.h"
 
-#import "BAOAuth2Token.h"
+#import "BAAuthenticatedUserModel.h"
 
 #import "NSError+BAErrors.h"
 

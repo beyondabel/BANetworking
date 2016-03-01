@@ -6,14 +6,14 @@
 //  Copyright © 2015年 abel. All rights reserved.
 //
 
-#import "BAOAuth2Token.h"
+#import "BAAuthenticatedUserModel.h"
 
 @protocol BATokenStore <NSObject>
 
-- (void)storeToken:(BAOAuth2Token *)token;
+- (void)storeToken:(BAAuthenticatedUserModel *)token;
 
 - (void)deleteStoredToken;
 
-- (BAOAuth2Token *)storedToken;
+- (BAAuthenticatedUserModel *)storedToken;
 
 @end

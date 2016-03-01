@@ -12,20 +12,10 @@
 
 extern NSString * const BAClientAuthenticationStateDidChangeNotification;
 
-@class BAOAuth2Token, BARequest, BAUserModel;
+@class BAAuthenticatedUserModel, BARequest;
 @protocol BATokenStore;
 
 @interface BAClient : NSObject
-
-/**
- *  The current API key.
- */
-@property (nonatomic, copy, readonly) NSString *apiKey;
-
-/**
- *  The current API secret.
- */
-@property (nonatomic, copy, readonly) NSString *apiSecret;
 
 /**
  *  The HTTP client responsible for creating HTTP request.
@@ -35,12 +25,7 @@ extern NSString * const BAClientAuthenticationStateDidChangeNotification;
 /**
  *  The current OAuth2 token used by the client. When not nil, the client is considered to be authenticated.
  */
-@property (nonatomic, strong, readwrite) BAOAuth2Token *oauthToken;
-
-/**
- *  The current OAuth2 token used by the client. When not nil, the client is considered to be authenticated.
- */
-@property (nonatomic, strong, readwrite) BAUserModel *userModel;
+@property (nonatomic, strong, readwrite) BAAuthenticatedUserModel *oauthToken;
 
 /**
  *  A boolean indicating whether the client is currently authenticated, i.e. the oauthToken is non-nil.
@@ -87,26 +72,6 @@ extern NSString * const BAClientAuthenticationStateDidChangeNotification;
  *  @return The initialized client.
  */
 - (instancetype)initWithHTTPClient:(BAHTTPClient *)client;
-
-/**
- *  Initialize a client with an API key and secret. This is equivalent to calling -init followed by
- *  setupWithAPIKey:secret:.
- *
- *  @param key    The Podio API key
- *  @param secret The Podio API secret matching the key
- *
- *  @return The initialized client.
- */
-- (instancetype)initWithAPIKey:(NSString *)key secret:(NSString *)secret;
-
-/** Configure the default client with a Podio API key/secret pair.
- *
- * @see 
- *
- * @param key The Podio API key
- * @param secret The Podio API secret matching the key
- */
-- (void)setupWithAPIKey:(NSString *)key secret:(NSString *)secret;
 
 /**
  *  Execute a block for which the current client is self. This is useful to force the use
