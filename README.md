@@ -9,7 +9,7 @@ BANetworking uses ARC and is based on NSURLSession, which means it supports iOS 
 
 If you need a hand, you can contact us by e-mail.
 
-## Using PodioKit
+## Using BANetworking
 
 #### 1. Set up request logs
 
