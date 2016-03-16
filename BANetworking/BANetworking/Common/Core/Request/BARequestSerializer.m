@@ -155,6 +155,14 @@ static NSUInteger const kBoundaryLength = 20;
         [multiPartData appendContentsOfFileAtPath:request.fileData.filePath name:request.fileData.name];
     }
     
+    for (BARequestFileData *fileData in request.fileDatas) {
+        if (fileData.data) {
+            [multiPartData appendFileData:fileData.data fileName:fileData.fileName mimeType:nil name:fileData.name];
+        } else if (fileData.filePath) {
+            [multiPartData appendContentsOfFileAtPath:fileData.filePath name:fileData.name];
+        }
+    }
+    
     if ([request.parameters count] > 0) {
         [multiPartData appendFormDataParameters:request.parameters];
     }

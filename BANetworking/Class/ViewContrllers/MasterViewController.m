@@ -44,6 +44,7 @@
     self.navigationItem.rightBarButtonItem = addButton;
 
     
+    
   
 //    BARequest * request = [BARequest POSTRequestWithPath:@"random" parameters:@{@"userName" : @"BeyondAbel", @"age" : @[@16,@10]}];
 //    [[[BAClient currentClient] performRequest:request] onComplete:^(BAResponse *result, NSError *error) {
@@ -62,6 +63,21 @@
             NSLog(@"文件上传出错");
         }
     }];
+}
+
+- (void)uploadFiles {
+    BARequest *request = [BARequest POSTRequestWithPath:@"avatar" parameters:@{@"type" : @"avatar"}];
+    BARequestFileData *fileData1 = [BARequestFileData fileDataWithData:[NSData data] name:@"fileKey1" fileName:@"fileName1"];
+    BARequestFileData *fileData2 = [BARequestFileData fileDataWithData:[NSData data] name:@"fileKey2" fileName:@"fileName2"];
+    request.fileDatas = @[fileData1, fileData2];
+    [[[BAClient currentClient] performRequest:request] onComplete:^(id result, NSError *error) {
+        if (error) {
+            NSLog(@"文件上传出错");
+        } else {
+            NSLog(@"文件上传出错");
+        }
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

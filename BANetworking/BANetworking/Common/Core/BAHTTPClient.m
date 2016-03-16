@@ -13,7 +13,14 @@
 #import "BAMacros.h"
 #import "NSURLRequest+BADescription.h"
 
+
+#ifndef kDefaultBaseURL
+#define kDefaultBaseURL
+
 static NSString * const kDefaultBaseURLString = @"http://192.168.31.200/";
+
+#endif
+
 static char * const kRequestProcessingQueueLabel = "com.jindanlicai.networingkit.httpclient.response_processing_queue";
 
 @interface BAHTTPClient () <NSURLSessionDelegate, NSURLSessionDownloadDelegate, NSURLSessionDataDelegate>

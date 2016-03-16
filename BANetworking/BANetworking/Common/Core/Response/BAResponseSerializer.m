@@ -12,7 +12,7 @@
 @implementation BAResponseSerializer
 
 - (id)responseObjectForURLResponse:(NSURLResponse *)response data:(NSData *)data {
-    if (![response isKindOfClass:[NSHTTPURLResponse class]]) return nil;
+    if (data == nil || ![response isKindOfClass:[NSHTTPURLResponse class]]) return nil;
     
     id object = nil;
     NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)response;

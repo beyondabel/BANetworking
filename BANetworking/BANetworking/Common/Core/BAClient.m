@@ -140,18 +140,21 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
 #pragma mark - Properties
 
 - (BOOL)isAuthenticated {
-    return self.oauthToken != nil;
+    return self.authenticatedUser != nil;
 }
 
-- (void)setOauthToken:(BAAuthenticatedUserModel *)oauthToken {
-    if (oauthToken == _oauthToken) return;
+- (void)setAuthenticatedUser:(BAAuthenticatedUserModel *)authenticatedUser {
+    if (authenticatedUser == _authenticatedUser) {
+        return;
+    }
     
     NSString *isAuthenticatedKey = NSStringFromSelector(@selector(isAuthenticated));
     [self willChangeValueForKey:isAuthenticatedKey];
     
-    _oauthToken = oauthToken;
+    _authenticatedUser = authenticatedUser;
     
     [self didChangeValueForKey:isAuthenticatedKey];
+    
 }
 
 - (NSMutableOrderedSet *)pendingRequests {
@@ -233,14 +236,13 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
     
     self.authenticationTask = [[self performTaskWithRequest:request] then:^(BAResponse *response, NSError *error) {
         BA_STRONG(weakSelf) strongSelf = weakSelf;
-        debug(@"%@", response.body);
         if (!error) {
-            strongSelf.oauthToken = [[BAAuthenticatedUserModel alloc] initWithDictionary:response.body];
+            strongSelf.authenticatedUser = [[BAAuthenticatedUserModel alloc] initWithDictionary:response.body];
         } else if ([error ba_isServerError]) {
             // If authentication failed server side, reset the token since it isn't likely
             // to be successful next time either. If it is NOT a server side error, it might
             // just be networking so we should not reset the token.
-            strongSelf.oauthToken = nil;
+            strongSelf.authenticatedUser = nil;
         }
         
         strongSelf.authenticationTask = nil;
@@ -278,7 +280,7 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
     
     if (self.isAuthenticated) {
         // Authenticated request, might need token refresh
-        if (![self.oauthToken willExpireWithinIntervalFromNow:kTokenExpirationLimit]) {
+        if (![self.authenticatedUser willExpireWithinIntervalFromNow:kTokenExpirationLimit]) {
             task = [self performTaskWithRequest:request];
         } else {
             task = [self enqueueTaskWithRequest:request];
@@ -348,7 +350,7 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
         } else {
             if (response.statusCode == 401) {
                 // The token we are using is not valid anymore. Reset it.
-                strongSelf.oauthToken = nil;
+                strongSelf.authenticatedUser = nil;
             }
             
             [taskResolver failWithError:error];
@@ -385,7 +387,7 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
 
 - (void)updateAuthorizationHeader:(BOOL)isAuthenticated {
     if (isAuthenticated) {
-        [self.HTTPClient.requestSerializer setAuthorizationHeaderWithOAuth2AccessToken:self.oauthToken.accessToken];
+        [self.HTTPClient.requestSerializer setAuthorizationHeaderWithOAuth2AccessToken:self.authenticatedUser.accessToken];
     }
 }
 
@@ -398,7 +400,7 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
 - (void)updateStoredToken {
     if (!self.tokenStore) return;
     
-    BAAuthenticatedUserModel *token = self.oauthToken;
+    BAAuthenticatedUserModel *token = self.authenticatedUser;
     if (token) {
         [self.tokenStore storeToken:token];
     } else {
@@ -410,7 +412,7 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
     if (!self.tokenStore) return;
     
     if (!self.isAuthenticated) {
-        self.oauthToken = [self.tokenStore storedToken];
+        self.authenticatedUser = [self.tokenStore storedToken];
     }
 }
 
@@ -424,7 +426,7 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
 }
 
 - (BAAsyncTask *)refreshToken {
-    BAAsyncTask *task = [self refreshTokenWithRefreshToken:self.oauthToken.accessToken];
+    BAAsyncTask *task = [self refreshTokenWithRefreshToken:self.authenticatedUser.accessToken];
     
     BA_WEAK_SELF weakSelf = self;
     

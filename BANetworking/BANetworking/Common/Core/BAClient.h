@@ -23,9 +23,9 @@ extern NSString * const BAClientAuthenticationStateDidChangeNotification;
 @property (nonatomic, strong, readonly) BAHTTPClient *HTTPClient;
 
 /**
- *  The current OAuth2 token used by the client. When not nil, the client is considered to be authenticated.
+ *  The current Authenticated token used by the client. When not nil, the client is considered to be authenticated.
  */
-@property (nonatomic, strong, readwrite) BAAuthenticatedUserModel *oauthToken;
+@property (nonatomic, strong, readwrite) BAAuthenticatedUserModel *authenticatedUser;
 
 /**
  *  A boolean indicating whether the client is currently authenticated, i.e. the oauthToken is non-nil.
@@ -114,7 +114,7 @@ extern NSString * const BAClientAuthenticationStateDidChangeNotification;
 /**
  *  Dispatches an HTTP request task for the provided request.
  *
- *  @param request    The request to perform.
+ *  @param request The request to perform.
  *
  *  @return The URL Request.
  */

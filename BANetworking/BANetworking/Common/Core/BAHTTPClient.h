@@ -24,9 +24,6 @@ typedef void(^BARequestProgressBlock)(float progress, int64_t totalBytesExpected
 
 @interface BAHTTPClient : NSObject
 
-/**
- *  The base URL for the API endpoint. The default is https://api.jindanlicai.com.
- */
 @property (nonatomic, copy) NSURL *baseURL;
 
 /**
