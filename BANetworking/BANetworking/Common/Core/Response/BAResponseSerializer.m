@@ -17,7 +17,11 @@
     id object = nil;
     NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)response;
     if ([HTTPResponse.allHeaderFields[@"Content-Type"] ba_containsString:@"application/json"]) {
-        object = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        NSError *error = nil;
+        object = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        if (error) {
+            object = data;
+        }
     } else {
         object = data;
     }
