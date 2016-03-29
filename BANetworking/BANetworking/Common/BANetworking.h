@@ -28,21 +28,22 @@
  */
 + (BOOL)isAuthenticated;
 
-/*
+/* Configure the default client with a BANetworking authenticate request resolving class.
  *
+ * @param authenticatedClass  request userModel resolving class
+ * @param apiClass    request userModel API resolving class
  *
  */
 + (void)setupAuthenticatedAnalysisClass:(Class)authenticatedClass authenticatedAPIClass:(Class)apiClass;
 
-/*
+/* Configure the default client with a BANetworking common parameters class.
  *
  *
  */
 + (void)setupCommonParametersClass:(Class)commonClass;
 
 /*
- *
- *
+ * Configure the default client with http header userAgent.
  */
 + (void)setupUserAgent:(NSString *)userAgent;
 
