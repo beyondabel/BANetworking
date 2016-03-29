@@ -138,6 +138,7 @@
 		B56CEA5E1B9C39A5006AAE86 /* BAAuthenticationAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAAuthenticationAPI.m; sourceTree = "<group>"; };
 		B5769C861C62F4690063471E /* BAMultipartFormData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAMultipartFormData.h; sourceTree = "<group>"; };
 		B5769C871C62F4690063471E /* BAMultipartFormData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAMultipartFormData.m; sourceTree = "<group>"; };
+		B578E1EE1CAA68C000A81747 /* BACommonConfigProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BACommonConfigProtocol.h; sourceTree = "<group>"; };
 		B58CC27E1C81F4B900EF2210 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		B58CC27F1C81F4B900EF2210 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		B58CC2801C81F4B900EF2210 /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
@@ -244,6 +245,7 @@
 				B56CE9D71B9C13CB006AAE86 /* BASecurity.m */,
 				B56CE9D91B9C13EA006AAE86 /* BAURLSessionTaskDelegate.h */,
 				B56CE9DA1B9C13EA006AAE86 /* BAURLSessionTaskDelegate.m */,
+				B578E1EE1CAA68C000A81747 /* BACommonConfigProtocol.h */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -441,6 +443,13 @@
 			path = NSValueTransformer;
 			sourceTree = "<group>";
 		};
+		B578E1ED1CAA534E00A81747 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
 		B58CC27C1C81F4B900EF2210 /* Class */ = {
 			isa = PBXGroup;
 			children = (
@@ -511,6 +520,7 @@
 				B5B81DA61B9BDC8C00D6588D /* Main.storyboard */,
 				B5B81DA91B9BDC8C00D6588D /* Images.xcassets */,
 				B5B81DAB1B9BDC8C00D6588D /* LaunchScreen.xib */,
+				B578E1ED1CAA534E00A81747 /* Frameworks */,
 				B5B81D991B9BDC8C00D6588D /* Supporting Files */,
 			);
 			path = BANetworking;
@@ -877,6 +887,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BANetworking/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.qiandele.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -888,6 +899,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BANetworking/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.qiandele.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

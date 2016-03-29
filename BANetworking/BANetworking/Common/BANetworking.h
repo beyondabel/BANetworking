@@ -28,6 +28,13 @@
  */
 + (BOOL)isAuthenticated;
 
+
++ (void)setupAuthenticatedAnalysisClass:(Class)authenticatedClass authenticatedAPIClass:(Class)apiClass;
+
++ (void)setupCommonParametersClass:(Class)commonClass;
+
++ (void)setupUserAgent:(NSString *)userAgent;
+
 /**
  *  Configure the default Debug to NO
  *  set the debug request.

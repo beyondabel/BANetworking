@@ -88,18 +88,22 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
 
 @end
 
-@interface BAClient ()
+@interface BAClient () {
+}
 
 @property (nonatomic, weak, readwrite) BAAsyncTask *authenticationTask;
 @property (nonatomic, strong, readwrite) BARequest *savedAuthenticationRequest;
 @property (nonatomic, strong, readonly) NSMutableOrderedSet *pendingRequests;
+
+@property (nonatomic, strong, readonly) Class authenticatedClass;
+@property (nonatomic, strong, readonly) Class apiClass;
 
 @end
 
 
 @implementation BAClient
 
-@synthesize pendingRequests = _pendingRequests;
+@synthesize pendingRequests = _pendingRequests, authenticatedClass = _authenticatedClass, apiClass = _apiClass;
 
 + (instancetype)defaultClient {
     static BAClient *defaultClient;
@@ -165,7 +169,19 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
     return _pendingRequests;
 }
 
+- (Class)authenticatedClass {
+    if (_authenticatedClass) {
+        return _authenticatedClass;
+    }
+    return [BAAuthenticatedUserModel class];
+}
 
+- (Class)apiClass {
+    if (_apiClass) {
+        return _apiClass;
+    }
+    return [BAAuthenticationAPI class];
+}
 
 #pragma mark - Clients
 
@@ -204,20 +220,37 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
     self.HTTPClient.debugEnabled = debugEnabled;
 }
 
+- (void)setupAuthenticatedAnalysisClass:(Class)authenticatedClass authenticatedAPIClass:(Class)apiClass {
+    if(authenticatedClass) {
+        _authenticatedClass = authenticatedClass;
+    }
+    
+    if (apiClass) {
+        _apiClass = apiClass;
+    }
+}
+
+- (void)setupCommonParametersClass:(Class)commonClass {
+    _HTTPClient.commonParametersClass = commonClass;
+}
+
+- (void)setupUserAgent:(NSString *)userAgent {
+    _HTTPClient.userAgent = userAgent;
+}
+
 #pragma mark - Authentication
 
 - (BAAsyncTask *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password {
     NSParameterAssert(email);
     NSParameterAssert(password);
-    
-    BARequest *request = [BAAuthenticationAPI requestForAuthenticationWithEmail:email password:password];
+    BARequest *request = [[self apiClass] requestForAuthenticationWithEmail:email password:password];
     return [self authenticateWithRequest:request requestPolicy:BAClientAuthRequestPolicyCancelPrevious];
 }
 
 - (BAAsyncTask *)authenticateWithTransferToken:(NSString *)transferToken {
     NSParameterAssert(transferToken);
     
-    BARequest *request = [BAAuthenticationAPI requestForAuthenticationWithTransferToken:transferToken];
+    BARequest *request = [[self apiClass] requestForAuthenticationWithTransferToken:transferToken];
     return [self authenticateWithRequest:request requestPolicy:BAClientAuthRequestPolicyCancelPrevious];
 }
 
@@ -237,7 +270,7 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
     self.authenticationTask = [[self performTaskWithRequest:request] then:^(BAResponse *response, NSError *error) {
         BA_STRONG(weakSelf) strongSelf = weakSelf;
         if (!error) {
-            strongSelf.authenticatedUser = [[BAAuthenticatedUserModel alloc] initWithDictionary:response.body];
+            strongSelf.authenticatedUser = [[[self authenticatedClass] alloc] initWithDictionary:response.body];
         } else if ([error ba_isServerError]) {
             // If authentication failed server side, reset the token since it isn't likely
             // to be successful next time either. If it is NOT a server side error, it might

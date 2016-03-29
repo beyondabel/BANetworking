@@ -93,6 +93,13 @@ extern NSString * const BAClientAuthenticationStateDidChangeNotification;
  */
 - (BAAsyncTask *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password;
 
+
+- (void)setupAuthenticatedAnalysisClass:(Class)authenticatedClass authenticatedAPIClass:(Class)apiClass;
+
+- (void)setupCommonParametersClass:(Class)commonClass;
+
+- (void)setupUserAgent:(NSString *)userAgent;
+
 /**
  *  Authenticate using a transfer token.
  *

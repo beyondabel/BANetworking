@@ -10,6 +10,7 @@
 #import "BAResponse.h"
 #import "BARequestSerializer.h"
 #import "BAResponseSerializer.h"
+#import "BACommonConfigProtocol.h"
 
 typedef void(^BARequestCompletionBlock)(BAResponse *response, NSError *error);
 
@@ -33,6 +34,8 @@ typedef void(^BARequestProgressBlock)(float progress, int64_t totalBytesExpected
 
 
 @property (nonatomic, assign) BOOL debugEnabled;
+
+@property (nonatomic, strong) Class<BACommonConfigProtocol> commonParametersClass;
 
 /**
  *  The serializer of the request.

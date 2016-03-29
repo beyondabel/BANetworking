@@ -100,10 +100,23 @@ static char * const kRequestProcessingQueueLabel = "com.jindanlicai.networingkit
     return self.taskDelegates[@(task.taskIdentifier)];
 }
 
+- (BARequest *)addCommonParametersByRequest:(BARequest *)request {
+    if (self.commonParametersClass) {
+        if ([(id)self.commonParametersClass conformsToProtocol:@protocol(BACommonConfigProtocol)]) {
+//            [self.commonParametersClass instancesRespondToSelector:@selector(test)];
+            
+        } else {
+            debug(@"在%@", self.commonParametersClass);
+        }
+    }
+    return nil;
+}
+
 #pragma mark - Public
 
 - (NSURLSessionTask *)taskForRequest:(BARequest *)request progress:(BARequestProgressBlock)progress completion:(BARequestCompletionBlock)completion {
     NSURLSessionTask *task = nil;
+    request = [self addCommonParametersByRequest:request];
     
     BAHTTPResponseProcessBlock responseProcessBlock = nil;
     

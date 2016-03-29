@@ -21,6 +21,18 @@
     return [[BAClient currentClient] isAuthenticated];
 }
 
++ (void)setupAuthenticatedAnalysisClass:(Class)className authenticatedAPIClass:(Class)apiName {
+    [[BAClient currentClient] setupAuthenticatedAnalysisClass:className authenticatedAPIClass:apiName];
+}
+
++ (void)setupCommonParametersClass:(Class)commonClass {
+    [[BAClient currentClient] setupCommonParametersClass:commonClass];
+}
+
++ (void)setupUserAgent:(NSString *)userAgent {
+    [[BAClient currentClient] setupUserAgent:userAgent];
+}
+
 + (void)setDebugEnabled:(BOOL)value {
     [[BAClient currentClient] setDebugEnabled:value];
 }
