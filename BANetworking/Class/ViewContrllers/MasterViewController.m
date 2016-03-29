@@ -11,17 +11,6 @@
 #import "BAGlobalHeaders.h"
 #import "NSArray+BAAdditions.h"
 
-@interface BAUser : BAModel
-
-@property (nonatomic, assign) NSInteger userID;
-@property (nonatomic, strong) NSString *userName;
-
-@end
-
-@implementation BAUser
-
-@end
-
 
 @interface MasterViewController ()
 
@@ -43,13 +32,7 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
 
-    
-    
-  
-//    BARequest * request = [BARequest POSTRequestWithPath:@"random" parameters:@{@"userName" : @"BeyondAbel", @"age" : @[@16,@10]}];
-//    [[[BAClient currentClient] performRequest:request] onComplete:^(BAResponse *result, NSError *error) {
-//        debug(@"%@", [[NSString alloc] initWithData:result.body encoding:4]);
-//    }];
+
 }
 
 // 文件上传

@@ -28,11 +28,22 @@
  */
 + (BOOL)isAuthenticated;
 
-
+/*
+ *
+ *
+ */
 + (void)setupAuthenticatedAnalysisClass:(Class)authenticatedClass authenticatedAPIClass:(Class)apiClass;
 
+/*
+ *
+ *
+ */
 + (void)setupCommonParametersClass:(Class)commonClass;
 
+/*
+ *
+ *
+ */
 + (void)setupUserAgent:(NSString *)userAgent;
 
 /**

@@ -51,7 +51,6 @@
 		B5B81DA81B9BDC8C00D6588D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5B81DA61B9BDC8C00D6588D /* Main.storyboard */; };
 		B5B81DAA1B9BDC8C00D6588D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B81DA91B9BDC8C00D6588D /* Images.xcassets */; };
 		B5B81DAD1B9BDC8C00D6588D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5B81DAB1B9BDC8C00D6588D /* LaunchScreen.xib */; };
-		B5B81DB91B9BDC8C00D6588D /* BANetworkingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B81DB81B9BDC8C00D6588D /* BANetworkingTests.m */; };
 		B5D9EF401C3504EA00739753 /* BARequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EF361C3504EA00739753 /* BARequest.m */; };
 		B5D9EF411C3504EA00739753 /* BARequestFileData.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EF381C3504EA00739753 /* BARequestFileData.m */; };
 		B5D9EF421C3504EA00739753 /* BARequestSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EF3A1C3504EA00739753 /* BARequestSerializer.m */; };
@@ -59,16 +58,6 @@
 		B5D9EF441C3504EA00739753 /* BAResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EF3F1C3504EA00739753 /* BAResponseSerializer.m */; };
 		B5D9EF491C35098900739753 /* BADatastore.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EF471C35098900739753 /* BADatastore.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		B5B81DB31B9BDC8C00D6588D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B5B81D8E1B9BDC8C00D6588D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B5B81D951B9BDC8C00D6588D;
-			remoteInfo = BANetworking;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		B56CE9B51B9BE003006AAE86 /* BANetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BANetworking.h; sourceTree = "<group>"; };
@@ -161,7 +150,6 @@
 		B5B81DA71B9BDC8C00D6588D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B5B81DA91B9BDC8C00D6588D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B5B81DAC1B9BDC8C00D6588D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		B5B81DB21B9BDC8C00D6588D /* BANetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BANetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B81DB71B9BDC8C00D6588D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5B81DB81B9BDC8C00D6588D /* BANetworkingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BANetworkingTests.m; sourceTree = "<group>"; };
 		B5D9EF351C3504EA00739753 /* BARequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BARequest.h; sourceTree = "<group>"; };
@@ -181,13 +169,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		B5B81D931B9BDC8C00D6588D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B5B81DAF1B9BDC8C00D6588D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -505,7 +486,6 @@
 			isa = PBXGroup;
 			children = (
 				B5B81D961B9BDC8C00D6588D /* BANetworking.app */,
-				B5B81DB21B9BDC8C00D6588D /* BANetworkingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -633,24 +613,6 @@
 			productReference = B5B81D961B9BDC8C00D6588D /* BANetworking.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B5B81DB11B9BDC8C00D6588D /* BANetworkingTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B5B81DBF1B9BDC8C00D6588D /* Build configuration list for PBXNativeTarget "BANetworkingTests" */;
-			buildPhases = (
-				B5B81DAE1B9BDC8C00D6588D /* Sources */,
-				B5B81DAF1B9BDC8C00D6588D /* Frameworks */,
-				B5B81DB01B9BDC8C00D6588D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B5B81DB41B9BDC8C00D6588D /* PBXTargetDependency */,
-			);
-			name = BANetworkingTests;
-			productName = BANetworkingTests;
-			productReference = B5B81DB21B9BDC8C00D6588D /* BANetworkingTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -662,10 +624,6 @@
 				TargetAttributes = {
 					B5B81D951B9BDC8C00D6588D = {
 						CreatedOnToolsVersion = 6.4;
-					};
-					B5B81DB11B9BDC8C00D6588D = {
-						CreatedOnToolsVersion = 6.4;
-						TestTargetID = B5B81D951B9BDC8C00D6588D;
 					};
 				};
 			};
@@ -683,7 +641,6 @@
 			projectRoot = "";
 			targets = (
 				B5B81D951B9BDC8C00D6588D /* BANetworking */,
-				B5B81DB11B9BDC8C00D6588D /* BANetworkingTests */,
 			);
 		};
 /* End PBXProject section */
@@ -696,13 +653,6 @@
 				B5B81DA81B9BDC8C00D6588D /* Main.storyboard in Resources */,
 				B5B81DAD1B9BDC8C00D6588D /* LaunchScreen.xib in Resources */,
 				B5B81DAA1B9BDC8C00D6588D /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B5B81DB01B9BDC8C00D6588D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -763,23 +713,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B5B81DAE1B9BDC8C00D6588D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B5B81DB91B9BDC8C00D6588D /* BANetworkingTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		B5B81DB41B9BDC8C00D6588D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B5B81D951B9BDC8C00D6588D /* BANetworking */;
-			targetProxy = B5B81DB31B9BDC8C00D6588D /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B5B81DA61B9BDC8C00D6588D /* Main.storyboard */ = {
@@ -906,42 +840,6 @@
 			};
 			name = Release;
 		};
-		B5B81DC01B9BDC8C00D6588D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = BANetworkingTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.qiandele.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BANetworking.app/BANetworking";
-			};
-			name = Debug;
-		};
-		B5B81DC11B9BDC8C00D6588D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = BANetworkingTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.qiandele.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BANetworking.app/BANetworking";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -959,15 +857,6 @@
 			buildConfigurations = (
 				B5B81DBD1B9BDC8C00D6588D /* Debug */,
 				B5B81DBE1B9BDC8C00D6588D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B5B81DBF1B9BDC8C00D6588D /* Build configuration list for PBXNativeTarget "BANetworkingTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B5B81DC01B9BDC8C00D6588D /* Debug */,
-				B5B81DC11B9BDC8C00D6588D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
