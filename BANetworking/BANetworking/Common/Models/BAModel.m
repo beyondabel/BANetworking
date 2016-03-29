@@ -88,6 +88,8 @@
 - (void)updateFromDictionary:(NSDictionary *)dictionary {
     NSDictionary *keyPathMapping = [[self class] dictionaryKeyPathsForPropertyNamesForClassAndSuperClasses];
     
+    NSDictionary *proertyDictionary = [self propertyTypeDictionary];
+    
     for (NSString *propertyName in self.codablePropertyNames) {
         // Should this property be mapped?
         NSString *keyPath = [keyPathMapping objectForKey:propertyName];
@@ -108,7 +110,9 @@
                 }
             }
             
-            [self setValue:value forKey:propertyName];
+            if ([self typeMatchingWithType:proertyDictionary[propertyName] value:value]) {
+                [self setValue:value forKey:propertyName];
+            }
         }
     }
 }
@@ -173,6 +177,63 @@
     return propertyNames;
 }
 
+- (NSDictionary *)propertyTypeDictionary {
+    NSMutableDictionary *propertyDictionary = [NSMutableDictionary dictionary];
+    unsigned int propertyCount = 0;
+    objc_property_t *properties = class_copyPropertyList([self class], &propertyCount);
+    if (properties) {
+        for (unsigned int i = 0; i < propertyCount; i++) {
+            if (!properties[i]) break;
+    
+            const char *name = property_getName(properties[i]);
+            unsigned int attrCount;
+            objc_property_attribute_t *attrs = property_copyAttributeList(properties[i], &attrCount);
+            for (unsigned int i = 0; i < attrCount; i++) {
+                if (attrs[i].name[0] == 'T') {
+                    if (attrs[i].value) {
+                        NSString *typeEncoding = [NSString stringWithUTF8String:attrs[i].value];
+                        typeEncoding = [[typeEncoding stringByReplacingOccurrencesOfString:@"@\"" withString:@""] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+                        if (name && typeEncoding) {
+                            [propertyDictionary setObject:typeEncoding forKey:[NSString stringWithUTF8String:name]];
+                        }
+                        break;
+                    }
+                }
+            }
+            if (attrs) {
+                free(attrs);
+                attrs = NULL;
+            }
+        }
+        free(properties);
+    }
+    
+    return propertyDictionary;
+}
+
+- (BOOL)typeMatchingWithType:(NSString *)type value:(id)value {
+    if ([value isKindOfClass:[NSString class]]) {
+        if ([type isEqualToString:@"NSString"] || [type isEqualToString:@"i"]  || [type isEqualToString:@"d"]) {
+            return YES;
+        }
+    } else if ([value isKindOfClass:[NSNumber class]]) {
+        if ([type isEqualToString:@"i"]  || [type isEqualToString:@"d"]) {
+            return YES;
+        }
+    } else if ([value isKindOfClass:[NSArray class]]) {
+        if ([type isEqualToString:@"NSArray"]) {
+            return YES;
+        }
+    } else if ([value isKindOfClass:[NSDictionary class]]) {
+        if ([type isEqualToString:@"NSDictionary"]  || [[NSClassFromString(type) alloc] isKindOfClass:[BAModel class]]) {
+            return YES;
+            
+        }
+    }
+    
+    return NO;
+}
+
 #pragma mark - Value transformation
 
 + (NSValueTransformer *)valueTransformerForKey:(NSString *)key dictionary:(NSDictionary *)dictionary {
@@ -215,5 +276,6 @@
     
     return YES;
 }
+
 
 @end

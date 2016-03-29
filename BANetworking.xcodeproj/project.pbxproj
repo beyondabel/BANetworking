@@ -444,6 +444,7 @@
 		B58CC27C1C81F4B900EF2210 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				B5E4F04B1CA3C7DC008518B7 /* Networking */,
 				B58CC27D1C81F4B900EF2210 /* ViewContrllers */,
 			);
 			path = Class;
@@ -577,6 +578,29 @@
 				B5D9EF481C35098900739753 /* BATokenStore.h */,
 			);
 			path = Datastore;
+			sourceTree = "<group>";
+		};
+		B5E4F04B1CA3C7DC008518B7 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				B5E4F04C1CA3C7DC008518B7 /* API */,
+				B5E4F04D1CA3C7DC008518B7 /* Model */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		B5E4F04C1CA3C7DC008518B7 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		B5E4F04D1CA3C7DC008518B7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
