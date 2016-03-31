@@ -7,7 +7,7 @@
 
 BANetworking uses ARC and is based on NSURLSession, which means it supports iOS 7.0 and above and Mac OS X 10.9 and above.
 
-If you need a hand, you can contact us by e-mail.
+If you need a hand, you can contact us by [e-mail](beyondabel@gmail.com).
 
 ## Using BANetworking
 
@@ -35,6 +35,13 @@ If you need a hand, you can contact us by e-mail.
             NSLog(@"file upload succeed");
         }
     }];
+    
+## Adding to your project
+
+If you are using CocoaPods, then, just add this line to your Podfile
+
+	pod 'BANetworking', '~> 1.0.0'
+    
 
 ## License
 
