@@ -7,7 +7,7 @@
 //
 
 #import "BAUserDefaultsTokenStore.h"
-#import "BAAuthenticatedUserModel.h"
+#import "BAAuthenticatedModel.h"
 
 static NSString * const kUserDefaultsTokenKey = @"BAbelKitOAuthToken";
 
@@ -22,7 +22,7 @@ static NSString * const kUserDefaultsTokenKey = @"BAbelKitOAuthToken";
 
 #pragma mark - BATokenStore
 
-- (void)storeToken:(BAAuthenticatedUserModel *)token {
+- (void)storeToken:(BAAuthenticatedModel *)token {
     [BAUserDefaults setObject:token ForKey:kUserDefaultsTokenKey];
 }
 
@@ -30,7 +30,7 @@ static NSString * const kUserDefaultsTokenKey = @"BAbelKitOAuthToken";
     [BAUserDefaults removeObjectForKey:kUserDefaultsTokenKey];
 }
 
-- (BAAuthenticatedUserModel *)storedToken {
+- (BAAuthenticatedModel *)storedToken {
     return [BAUserDefaults objectForKey:kUserDefaultsTokenKey];
 }
 

@@ -12,7 +12,7 @@
 
 extern NSString * const BAClientAuthenticationStateDidChangeNotification;
 
-@class BAAuthenticatedUserModel, BARequest;
+@class BAAuthenticatedModel, BARequest;
 @protocol BATokenStore;
 
 @interface BAClient : NSObject
@@ -25,7 +25,7 @@ extern NSString * const BAClientAuthenticationStateDidChangeNotification;
 /**
  *  The current Authenticated token used by the client. When not nil, the client is considered to be authenticated.
  */
-@property (nonatomic, strong, readwrite) BAAuthenticatedUserModel *authenticatedUser;
+@property (nonatomic, strong, readwrite) BAAuthenticatedModel *authenticatedUser;
 
 /**
  *  A boolean indicating whether the client is currently authenticated, i.e. the oauthToken is non-nil.

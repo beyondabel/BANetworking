@@ -36,7 +36,7 @@
 		B56CEA4A1B9C184F006AAE86 /* BANumberValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CEA3A1B9C184F006AAE86 /* BANumberValueTransformer.m */; };
 		B56CEA4E1B9C184F006AAE86 /* BAURLValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CEA421B9C184F006AAE86 /* BAURLValueTransformer.m */; };
 		B56CEA561B9C2FD1006AAE86 /* BABaseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CEA551B9C2FD1006AAE86 /* BABaseAPI.m */; };
-		B56CEA591B9C38DD006AAE86 /* BAAuthenticatedUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CEA581B9C38DD006AAE86 /* BAAuthenticatedUserModel.m */; };
+		B56CEA591B9C38DD006AAE86 /* BAAuthenticatedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CEA581B9C38DD006AAE86 /* BAAuthenticatedModel.m */; };
 		B56CEA5F1B9C39A5006AAE86 /* BAAuthenticationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CEA5E1B9C39A5006AAE86 /* BAAuthenticationAPI.m */; };
 		B5769C881C62F4690063471E /* BAMultipartFormData.m in Sources */ = {isa = PBXBuildFile; fileRef = B5769C871C62F4690063471E /* BAMultipartFormData.m */; };
 		B58CC2821C81F4B900EF2210 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B58CC27F1C81F4B900EF2210 /* DetailViewController.m */; };
@@ -51,6 +51,8 @@
 		B5B81DA81B9BDC8C00D6588D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5B81DA61B9BDC8C00D6588D /* Main.storyboard */; };
 		B5B81DAA1B9BDC8C00D6588D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B81DA91B9BDC8C00D6588D /* Images.xcassets */; };
 		B5B81DAD1B9BDC8C00D6588D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5B81DAB1B9BDC8C00D6588D /* LaunchScreen.xib */; };
+		B5CBD5C01CB2927900E3D098 /* AutoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CBD5BF1CB2927900E3D098 /* AutoModel.m */; };
+		B5CBD5C31CB292D100E3D098 /* UserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CBD5C21CB292D100E3D098 /* UserAPI.m */; };
 		B5D9EF401C3504EA00739753 /* BARequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EF361C3504EA00739753 /* BARequest.m */; };
 		B5D9EF411C3504EA00739753 /* BARequestFileData.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EF381C3504EA00739753 /* BARequestFileData.m */; };
 		B5D9EF421C3504EA00739753 /* BARequestSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EF3A1C3504EA00739753 /* BARequestSerializer.m */; };
@@ -121,8 +123,8 @@
 		B56CEA531B9C1ADF006AAE86 /* BAConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BAConstants.h; sourceTree = "<group>"; };
 		B56CEA541B9C2FD1006AAE86 /* BABaseAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BABaseAPI.h; sourceTree = "<group>"; };
 		B56CEA551B9C2FD1006AAE86 /* BABaseAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BABaseAPI.m; sourceTree = "<group>"; };
-		B56CEA571B9C38DD006AAE86 /* BAAuthenticatedUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAAuthenticatedUserModel.h; sourceTree = "<group>"; };
-		B56CEA581B9C38DD006AAE86 /* BAAuthenticatedUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAAuthenticatedUserModel.m; sourceTree = "<group>"; };
+		B56CEA571B9C38DD006AAE86 /* BAAuthenticatedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAAuthenticatedModel.h; sourceTree = "<group>"; };
+		B56CEA581B9C38DD006AAE86 /* BAAuthenticatedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAAuthenticatedModel.m; sourceTree = "<group>"; };
 		B56CEA5D1B9C39A5006AAE86 /* BAAuthenticationAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAAuthenticationAPI.h; sourceTree = "<group>"; };
 		B56CEA5E1B9C39A5006AAE86 /* BAAuthenticationAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAAuthenticationAPI.m; sourceTree = "<group>"; };
 		B5769C861C62F4690063471E /* BAMultipartFormData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAMultipartFormData.h; sourceTree = "<group>"; };
@@ -152,6 +154,10 @@
 		B5B81DAC1B9BDC8C00D6588D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		B5B81DB71B9BDC8C00D6588D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5B81DB81B9BDC8C00D6588D /* BANetworkingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BANetworkingTests.m; sourceTree = "<group>"; };
+		B5CBD5BE1CB2927900E3D098 /* AutoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoModel.h; sourceTree = "<group>"; };
+		B5CBD5BF1CB2927900E3D098 /* AutoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoModel.m; sourceTree = "<group>"; };
+		B5CBD5C11CB292D100E3D098 /* UserAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAPI.h; sourceTree = "<group>"; };
+		B5CBD5C21CB292D100E3D098 /* UserAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAPI.m; sourceTree = "<group>"; };
 		B5D9EF351C3504EA00739753 /* BARequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BARequest.h; sourceTree = "<group>"; };
 		B5D9EF361C3504EA00739753 /* BARequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BARequest.m; sourceTree = "<group>"; };
 		B5D9EF371C3504EA00739753 /* BARequestFileData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BARequestFileData.h; sourceTree = "<group>"; };
@@ -236,8 +242,8 @@
 			children = (
 				B56CE9DC1B9C1423006AAE86 /* BAModel.h */,
 				B56CE9DD1B9C1423006AAE86 /* BAModel.m */,
-				B56CEA571B9C38DD006AAE86 /* BAAuthenticatedUserModel.h */,
-				B56CEA581B9C38DD006AAE86 /* BAAuthenticatedUserModel.m */,
+				B56CEA571B9C38DD006AAE86 /* BAAuthenticatedModel.h */,
+				B56CEA581B9C38DD006AAE86 /* BAAuthenticatedModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -582,6 +588,8 @@
 		B5E4F04C1CA3C7DC008518B7 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				B5CBD5C11CB292D100E3D098 /* UserAPI.h */,
+				B5CBD5C21CB292D100E3D098 /* UserAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -589,6 +597,8 @@
 		B5E4F04D1CA3C7DC008518B7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B5CBD5BE1CB2927900E3D098 /* AutoModel.h */,
+				B5CBD5BF1CB2927900E3D098 /* AutoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -690,17 +700,19 @@
 				B56CEA451B9C184F006AAE86 /* BABlockValueTransformer.m in Sources */,
 				B5A026C71C4634ED000653D6 /* BAUserDefaults.m in Sources */,
 				B58CC2831C81F4B900EF2210 /* MasterViewController.m in Sources */,
-				B56CEA591B9C38DD006AAE86 /* BAAuthenticatedUserModel.m in Sources */,
+				B56CEA591B9C38DD006AAE86 /* BAAuthenticatedModel.m in Sources */,
 				B5D9EF441C3504EA00739753 /* BAResponseSerializer.m in Sources */,
 				B56CE9BA1B9BE3D4006AAE86 /* BAClient.m in Sources */,
 				B5D9EF421C3504EA00739753 /* BARequestSerializer.m in Sources */,
 				B56CEA561B9C2FD1006AAE86 /* BABaseAPI.m in Sources */,
+				B5CBD5C01CB2927900E3D098 /* AutoModel.m in Sources */,
 				B5A026C61C4634ED000653D6 /* BAKeychainTokenStore.m in Sources */,
 				B5B81D9C1B9BDC8C00D6588D /* main.m in Sources */,
 				B5B6328D1C50C23200C38191 /* NSURLRequest+BADescription.m in Sources */,
 				B5D9EF411C3504EA00739753 /* BARequestFileData.m in Sources */,
 				B56CEA191B9C183D006AAE86 /* NSDateFormatter+BAAdditions.m in Sources */,
 				B56CEA1A1B9C183D006AAE86 /* NSDictionary+BAAdditions.m in Sources */,
+				B5CBD5C31CB292D100E3D098 /* UserAPI.m in Sources */,
 				B5A026C51C4634ED000653D6 /* BAKeychain.m in Sources */,
 				B5D9EF431C3504EA00739753 /* BAResponse.m in Sources */,
 				B56CE9DE1B9C1423006AAE86 /* BAModel.m in Sources */,

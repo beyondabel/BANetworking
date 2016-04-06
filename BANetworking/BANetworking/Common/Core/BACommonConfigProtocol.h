@@ -12,4 +12,8 @@
 
 + (NSDictionary *)commonParameters;
 
++ (NSDictionary *)headerCommonParameters;
+
++ (NSDictionary *)cookieCommonParameters;
+
 @end

@@ -6,10 +6,10 @@
 //  Copyright © 2015年 abel. All rights reserved.
 //
 
-#import "BAAuthenticatedUserModel.h"
+#import "BAAuthenticatedModel.h"
 #import "NSValueTransformer+BATransformers.h"
 
-@implementation BAAuthenticatedUserModel
+@implementation BAAuthenticatedModel
 
 #pragma mark - NSObject
 
@@ -40,8 +40,9 @@
 #pragma mark - Public
 
 - (BOOL)willExpireWithinIntervalFromNow:(NSTimeInterval)expireInterval {
-    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:expireInterval];
-    return [self.expiresOn earlierDate:date] == self.expiresOn;
+//    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:expireInterval];
+//    return [self.expiresOn earlierDate:date] == self.expiresOn;
+    return NO;
 }
 
 @end

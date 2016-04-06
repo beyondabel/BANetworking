@@ -21,8 +21,8 @@
     return [[BAClient currentClient] isAuthenticated];
 }
 
-+ (void)setupAuthenticatedAnalysisClass:(Class)className authenticatedAPIClass:(Class)apiName {
-    [[BAClient currentClient] setupAuthenticatedAnalysisClass:className authenticatedAPIClass:apiName];
++ (void)setupAuthenticatedHandlerClass:(Class)className authenticatedAPIClass:(Class)apiName {
+    [[BAClient currentClient] setupAuthenticatedHandlerClass:className authenticatedAPIClass:apiName];
 }
 
 + (void)setupCommonParametersClass:(Class)commonClass {

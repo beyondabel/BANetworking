@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "DetailViewController.h"
 #import "BANetworking.h"
+#import "AutoModel.h"
+#import "UserAPI.h"
 
 @interface AppDelegate ()
 
@@ -20,6 +22,8 @@
     // Override point for customization after application launch.
     [BANetworking setDebugEnabled:YES];
     [BANetworking automaticallyStoreTokenInUserDefaultsForCurrentApp];
+    [BANetworking setupAuthenticatedHandlerClass:[AutoModel class] authenticatedAPIClass:[UserAPI class]];
+//    [BANetworking setupCommonParametersClass:[CommonParameter Class]];
     
     return YES;
 }

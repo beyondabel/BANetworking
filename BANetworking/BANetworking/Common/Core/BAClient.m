@@ -7,7 +7,7 @@
 //
 
 #import "BAClient.h"
-#import "BAAuthenticatedUserModel.h"
+#import "BAAuthenticatedModel.h"
 #import "BATokenStore.h"
 #import "BAAuthenticationAPI.h"
 #import "BAMacros.h"
@@ -147,7 +147,7 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
     return self.authenticatedUser != nil;
 }
 
-- (void)setAuthenticatedUser:(BAAuthenticatedUserModel *)authenticatedUser {
+- (void)setAuthenticatedUser:(BAAuthenticatedModel *)authenticatedUser {
     if (authenticatedUser == _authenticatedUser) {
         return;
     }
@@ -173,7 +173,7 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
     if (_authenticatedClass) {
         return _authenticatedClass;
     }
-    return [BAAuthenticatedUserModel class];
+    return [BAAuthenticatedModel class];
 }
 
 - (Class)apiClass {
@@ -433,7 +433,7 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
 - (void)updateStoredToken {
     if (!self.tokenStore) return;
     
-    BAAuthenticatedUserModel *token = self.authenticatedUser;
+    BAAuthenticatedModel *token = self.authenticatedUser;
     if (token) {
         [self.tokenStore storeToken:token];
     } else {

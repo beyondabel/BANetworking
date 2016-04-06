@@ -34,7 +34,7 @@
  * @param apiClass    request userModel API resolving class
  *
  */
-+ (void)setupAuthenticatedAnalysisClass:(Class)authenticatedClass authenticatedAPIClass:(Class)apiClass;
++ (void)setupAuthenticatedHandlerClass:(Class)authenticatedClass authenticatedAPIClass:(Class)apiClass;
 
 /* Configure the default client with a BANetworking common parameters class.
  *

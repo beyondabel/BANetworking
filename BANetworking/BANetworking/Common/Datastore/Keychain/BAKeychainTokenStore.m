@@ -37,7 +37,7 @@ static NSString * const kTokenKeychainKey = @"BAbelKitOAuthToken";
 
 #pragma mark - BATokenStore
 
-- (void)storeToken:(BAAuthenticatedUserModel *)token {
+- (void)storeToken:(BAAuthenticatedModel *)token {
     [self.keychain setObject:token ForKey:kTokenKeychainKey];
 }
 
@@ -45,7 +45,7 @@ static NSString * const kTokenKeychainKey = @"BAbelKitOAuthToken";
     [self.keychain removeObjectForKey:kTokenKeychainKey];
 }
 
-- (BAAuthenticatedUserModel *)storedToken {
+- (BAAuthenticatedModel *)storedToken {
     return [self.keychain objectForKey:kTokenKeychainKey];
 }
 

@@ -109,7 +109,7 @@ static char * const kRequestProcessingQueueLabel = "com.jindanlicai.networingkit
             debug(@"在%@", self.commonParametersClass);
         }
     }
-    return nil;
+    return request;
 }
 
 #pragma mark - Public
@@ -120,7 +120,7 @@ static char * const kRequestProcessingQueueLabel = "com.jindanlicai.networingkit
     
     BAHTTPResponseProcessBlock responseProcessBlock = nil;
     
-    if (request.fileData && (request.method == BARequestMethodPOST || request.method == BARequestMethodPUT)) {
+    if ((request.fileData || request.fileDatas) && (request.method == BARequestMethodPOST || request.method == BARequestMethodPUT)) {
         // Upload task
         BAMultipartFormData *multipartData = [self.requestSerializer multipartFormDataFromRequest:request];
         NSData *data = [multipartData finalizedData];

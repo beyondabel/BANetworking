@@ -8,7 +8,7 @@
 
 #import "BAModel.h"
 
-@interface BAAuthenticatedUserModel : BAModel
+@interface BAAuthenticatedModel : BAModel
 
 /**
  *  The access token used for API access.

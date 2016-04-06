@@ -32,7 +32,7 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
 
-
+    [self uploadFiles];
 }
 
 // 文件上传
@@ -49,15 +49,19 @@
 }
 
 - (void)uploadFiles {
-    BARequest *request = [BARequest POSTRequestWithPath:@"avatar" parameters:@{@"type" : @"avatar"}];
-    BARequestFileData *fileData1 = [BARequestFileData fileDataWithData:[NSData data] name:@"fileKey1" fileName:@"fileName1"];
-    BARequestFileData *fileData2 = [BARequestFileData fileDataWithData:[NSData data] name:@"fileKey2" fileName:@"fileName2"];
+    NSURL *url = [NSURL URLWithString:@"http://qebaby.nowtime.com.cn/index.php/app/topic/uploads"];
+    BARequest *request = [BARequest POSTRequestWithURL:url parameters:nil];
+    request.contentType = BARequestContentTypeMultipart;
+    BARequestFileData *fileData1 = [BARequestFileData fileDataWithData:UIImagePNGRepresentation([UIImage imageNamed:@"1.png"]) name:@"image1" fileName:@"fileName1"];
+    BARequestFileData *fileData2 = [BARequestFileData fileDataWithData:UIImagePNGRepresentation([UIImage imageNamed:@"1.png"]) name:@"image2" fileName:@"fileName2"];
     request.fileDatas = @[fileData1, fileData2];
     [[[BAClient currentClient] performRequest:request] onComplete:^(id result, NSError *error) {
+
         if (error) {
             NSLog(@"文件上传出错");
         } else {
-            NSLog(@"文件上传出错");
+            
+            NSLog(@"文件上传成功 %@", [[NSString alloc]initWithData:[result body] encoding:4]);
         }
     }];
     
