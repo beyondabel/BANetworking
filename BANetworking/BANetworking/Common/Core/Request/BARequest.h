@@ -32,7 +32,7 @@ typedef NS_ENUM(NSUInteger, BARequestContentType) {
 @property (nonatomic, assign, readonly) BARequestMethod method;
 @property (nonatomic, copy, readonly) NSString *path;
 @property (nonatomic, copy, readonly) NSURL *URL;
-@property (nonatomic, copy, readonly) NSDictionary *parameters;
+@property (nonatomic, copy) NSDictionary *parameters;
 @property (nonatomic, strong) BARequestFileData *fileData;
 @property (nonatomic, strong) NSArray *fileDatas;   // BARequestFileData Array
 @property (nonatomic, assign, readwrite) BARequestContentType contentType;

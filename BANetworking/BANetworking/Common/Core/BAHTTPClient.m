@@ -103,10 +103,17 @@ static char * const kRequestProcessingQueueLabel = "com.jindanlicai.networingkit
 - (BARequest *)addCommonParametersByRequest:(BARequest *)request {
     if (self.commonParametersClass) {
         if ([(id)self.commonParametersClass conformsToProtocol:@protocol(BACommonConfigProtocol)]) {
-//            [self.commonParametersClass instancesRespondToSelector:@selector(test)];
-            
+            NSString *className = NSStringFromClass(self.commonParametersClass);
+            if (request.parameters) {
+                NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+                [parameters addEntriesFromDictionary:request.parameters];
+                [parameters addEntriesFromDictionary:[NSClassFromString(className) commonParameters]];
+                request.parameters = parameters;
+            } else {
+                request.parameters = [NSClassFromString(className) commonParameters];
+            }
         } else {
-            debug(@"在%@", self.commonParametersClass);
+            debug(@"请在%@中实现commonParameters方法", self.commonParametersClass);
         }
     }
     return request;
