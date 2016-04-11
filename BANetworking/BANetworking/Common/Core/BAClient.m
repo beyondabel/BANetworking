@@ -220,7 +220,7 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
     self.HTTPClient.debugEnabled = debugEnabled;
 }
 
-- (void)setupAuthenticatedAnalysisClass:(Class)authenticatedClass authenticatedAPIClass:(Class)apiClass {
+- (void)setupAuthenticatedHandlerClass:(Class)authenticatedClass authenticatedAPIClass:(Class)apiClass {
     if(authenticatedClass) {
         _authenticatedClass = authenticatedClass;
     }

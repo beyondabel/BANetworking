@@ -94,7 +94,7 @@ extern NSString * const BAClientAuthenticationStateDidChangeNotification;
 - (BAAsyncTask *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password;
 
 
-- (void)setupAuthenticatedAnalysisClass:(Class)authenticatedClass authenticatedAPIClass:(Class)apiClass;
+- (void)setupAuthenticatedHandlerClass:(Class)authenticatedClass authenticatedAPIClass:(Class)apiClass;
 
 - (void)setupCommonParametersClass:(Class)commonClass;
 
