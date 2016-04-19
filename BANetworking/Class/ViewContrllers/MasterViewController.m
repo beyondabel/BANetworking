@@ -35,7 +35,7 @@
     [self uploadFiles];
 }
 
-// 文件上传
+// 单文件上传
 - (void)uploadFile {
     BARequest *request = [BARequest POSTRequestWithPath:@"avatar" parameters:@{@"type" : @"avatar"}];
     request.fileData = [BARequestFileData fileDataWithData:[NSData data] name:@"fileKey" fileName:@"fileName"];
@@ -48,6 +48,7 @@
     }];
 }
 
+// 多文件上传
 - (void)uploadFiles {
     NSURL *url = [NSURL URLWithString:@"http://qebaby.nowtime.com.cn/index.php/app/topic/uploads"];
     BARequest *request = [BARequest POSTRequestWithURL:url parameters:nil];
@@ -56,12 +57,10 @@
     BARequestFileData *fileData2 = [BARequestFileData fileDataWithData:UIImagePNGRepresentation([UIImage imageNamed:@"1.png"]) name:@"image2" fileName:@"fileName2"];
     request.fileDatas = @[fileData1, fileData2];
     [[[BAClient currentClient] performRequest:request] onComplete:^(id result, NSError *error) {
-
         if (error) {
             NSLog(@"文件上传出错");
         } else {
-            
-            NSLog(@"文件上传成功 %@", [[NSString alloc]initWithData:[result body] encoding:4]);
+            NSLog(@"文件上传成功 %@", [result body]);
         }
     }];
     
