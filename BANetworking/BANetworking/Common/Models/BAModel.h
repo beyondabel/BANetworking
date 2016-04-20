@@ -1,14 +1,14 @@
 //
 //  BAModel.h
-//  BANetworking
+//  BAbelKit
 //
-//  Created by abel on 15/9/6.
-//  Copyright © 2015年 abel. All rights reserved.
+//  Created by Abel on 14/04/14.
+//  Copyright (c) 2014 Abel, Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface BAModel : NSObject <NSCoding>
+@interface BAModel : NSObject <NSCoding, NSCopying>
 
 /**
  *  Creates an instance with values from the provided dictionary, using the mapping dictionary returned
@@ -32,9 +32,9 @@
 /**
  *  Override this method in subclasses of BAModel to define how to map the content of a dictionary
  *  provided through either the initWithDictionary: initializer or the updateFromDictionary: method.
- *
+ *  
  *  The general rules for mapping properties are:
- *
+ *  
  *  1. To map a dictionary key to a property, include the property name as the key of the returned dictionary,
  *     and the dictionary key path as the value of the dictionary.
  *  2. If the subclass has an ivar-backed property that matches the name of a dictionary key, it will be
