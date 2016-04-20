@@ -1,9 +1,9 @@
 //
 //  BAModel.m
-//  BAbelKit
+//  BANetworking
 //
-//  Created by Abel on 14/04/14.
-//  Copyright (c) 2014 Abel, Inc. All rights reserved.
+//  Created by abel on 15/9/6.
+//  Copyright © 2015年 abel. All rights reserved.
 //
 
 #import <objc/runtime.h>
@@ -88,6 +88,10 @@
 - (void)updateFromDictionary:(NSDictionary *)dictionary {
     NSDictionary *keyPathMapping = [[self class] dictionaryKeyPathsForPropertyNamesForClassAndSuperClasses];
     
+    NSDictionary *proertyDictionary = [[self class] propertyTypeDictionary];
+    
+    //    NSArray * proerty = [[self class] nl_dynamicPropertyDescriptors];
+    
     for (NSString *propertyName in self.codablePropertyNames) {
         // Should this property be mapped?
         NSString *keyPath = [keyPathMapping objectForKey:propertyName];
@@ -108,7 +112,9 @@
                 }
             }
             
-            [self setValue:value forKey:propertyName];
+            if ([self typeMatchingWithType:proertyDictionary[propertyName] value:value]) {
+                [self setValue:value forKey:propertyName];
+            }
         }
     }
 }
@@ -173,6 +179,71 @@
     return propertyNames;
 }
 
++ (NSDictionary *)propertyTypeDictionary {
+    NSMutableDictionary *propertyDictionary = [NSMutableDictionary dictionary];
+    unsigned int propertyCount = 0;
+    objc_property_t *properties = class_copyPropertyList([self class], &propertyCount);
+    if (properties) {
+        for (unsigned int i = 0; i < propertyCount; i++) {
+            if (!properties[i]) break;
+            
+            const char *name = property_getName(properties[i]);
+            unsigned int attrCount;
+            objc_property_attribute_t *attrs = property_copyAttributeList(properties[i], &attrCount);
+            for (unsigned int i = 0; i < attrCount; i++) {
+                if (attrs[i].name[0] == 'T') {
+                    if (attrs[i].value) {
+                        NSString *typeEncoding = [NSString stringWithUTF8String:attrs[i].value];
+                        typeEncoding = [[typeEncoding stringByReplacingOccurrencesOfString:@"@\"" withString:@""] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+                        if (name && typeEncoding) {
+                            [propertyDictionary setObject:typeEncoding forKey:[NSString stringWithUTF8String:name]];
+                        }
+                        break;
+                    }
+                }
+            }
+            if (attrs) {
+                free(attrs);
+                attrs = NULL;
+            }
+        }
+        free(properties);
+    }
+    
+    if (class_getSuperclass([self class]) != [NSObject class]) {
+        // 加上父类的属性描述器
+        [propertyDictionary addEntriesFromDictionary:[class_getSuperclass([self class]) propertyTypeDictionary]];
+    }
+    
+    return propertyDictionary;
+}
+
+- (BOOL)typeMatchingWithType:(NSString *)type value:(id)value {
+    //    debug(@"type = %@ value = %@", type, value);
+    if ([value isKindOfClass:[NSString class]]) {
+        if ([type isEqualToString:@"NSString"] || [type isEqualToString:@"i"]  || [type isEqualToString:@"d"] || [type isEqualToString:@"q"] || [type isEqualToString:@"B"]) {
+            return YES;
+        }
+    } else if ([value isKindOfClass:[NSNumber class]]) {
+        if ([type isEqualToString:@"i"] || [type isEqualToString:@"d"] || [type isEqualToString:@"q"] || [type isEqualToString:@"B"]) {
+            return YES;
+        }
+    } else if ([value isKindOfClass:[NSArray class]]) {
+        if ([type isEqualToString:@"NSArray"]) {
+            return YES;
+        }
+    } else if ([value isKindOfClass:[NSDictionary class]]) {
+        if ([type isEqualToString:@"NSDictionary"]  || [[NSClassFromString(type) alloc] isKindOfClass:[BAModel class]]) {
+            return YES;
+            
+        }
+    } else if ([[NSString stringWithUTF8String:object_getClassName(value)] isEqualToString:type]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
 #pragma mark - Value transformation
 
 + (NSValueTransformer *)valueTransformerForKey:(NSString *)key dictionary:(NSDictionary *)dictionary {
@@ -188,5 +259,33 @@
     
     return transformer;
 }
+
+#pragma mark - NSObject
+
+- (NSUInteger)hash {
+    NSUInteger value = 0;
+    
+    for (NSString *key in self.codablePropertyNames) {
+        value ^= [[self valueForKey:key] hash];
+    }
+    
+    return value;
+}
+
+- (BOOL)isEqual:(id)object {
+    if (self == object) return YES;
+    if (![object isMemberOfClass:self.class]) return NO;
+    
+    for (NSString *key in self.codablePropertyNames) {
+        id selfValue = [self valueForKey:key];
+        id objectValue = [object valueForKey:key];
+        
+        BOOL valuesEqual = ((selfValue == nil && objectValue == nil) || [selfValue isEqual:objectValue]);
+        if (!valuesEqual) return NO;
+    }
+    
+    return YES;
+}
+
 
 @end
