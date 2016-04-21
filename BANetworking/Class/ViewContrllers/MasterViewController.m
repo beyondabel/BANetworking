@@ -10,6 +10,7 @@
 #import "DetailViewController.h"
 #import "BAGlobalHeaders.h"
 #import "NSArray+BAAdditions.h"
+#import "BAModel.h"
 
 
 @interface MasterViewController ()
@@ -17,6 +18,7 @@
 @property NSMutableArray *objects;
 
 @end
+
 
 @implementation MasterViewController
 
@@ -31,8 +33,6 @@
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
-
-    [self uploadFiles];
 }
 
 // 单文件上传

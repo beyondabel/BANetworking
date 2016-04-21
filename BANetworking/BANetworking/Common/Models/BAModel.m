@@ -219,13 +219,13 @@
 }
 
 - (BOOL)typeMatchingWithType:(NSString *)type value:(id)value {
-    //    debug(@"type = %@ value = %@", type, value);
+        NSLog(@"type = %@ value = %@", type, value);
     if ([value isKindOfClass:[NSString class]]) {
-        if ([type isEqualToString:@"NSString"] || [type isEqualToString:@"i"]  || [type isEqualToString:@"d"] || [type isEqualToString:@"q"] || [type isEqualToString:@"B"]) {
+        if ([type isEqualToString:@"NSString"] || [type isEqualToString:@"i"]  || [type isEqualToString:@"d"] || [type isEqualToString:@"q"] || [type isEqualToString:@"B"]|| [type isEqualToString:@"f"]) {
             return YES;
         }
     } else if ([value isKindOfClass:[NSNumber class]]) {
-        if ([type isEqualToString:@"i"] || [type isEqualToString:@"d"] || [type isEqualToString:@"q"] || [type isEqualToString:@"B"]) {
+        if ([type isEqualToString:@"NSNumber"] || [type isEqualToString:@"i"] || [type isEqualToString:@"d"] || [type isEqualToString:@"q"] || [type isEqualToString:@"B"]) {
             return YES;
         }
     } else if ([value isKindOfClass:[NSArray class]]) {
