@@ -23,4 +23,8 @@
     return nil;
 }
 
++ (BARequest *)requestForAuthenticateLogout {
+    return nil;
+}
+
 @end

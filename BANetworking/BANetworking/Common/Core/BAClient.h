@@ -134,4 +134,6 @@ extern NSString * const BAClientAuthenticationStateDidChangeNotification;
  */
 - (void)restoreTokenIfNeeded;
 
+- (BAAsyncTask *)logout;
+
 @end

@@ -16,4 +16,6 @@
 
 + (BARequest *)requestToRefreshToken:(NSString *)refreshToken;
 
++ (BARequest *)requestForAuthenticateLogout;
+
 @end

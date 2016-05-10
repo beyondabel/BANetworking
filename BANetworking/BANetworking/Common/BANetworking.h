@@ -22,6 +22,8 @@
  */
 + (BAAsyncTask *)authenticateAsUserWithAccount:(NSString *)account password:(NSString *)password;
 
++ (BAAsyncTask *)logout;
+
 /** Informs the caller whether the default client is authenticated or not, i.e. has an active OAuth token.
  *
  * @return YES if the default client is authenticated, otherwise NO.

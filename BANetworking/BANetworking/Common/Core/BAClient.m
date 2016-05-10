@@ -410,6 +410,17 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
 }
 
 #pragma mark - State
+- (BAAsyncTask *)logout {
+    if (![self isAuthenticated]) {
+        return nil;
+    }
+    if (self.tokenStore) {
+        [self.tokenStore deleteStoredToken];
+    }
+    self.authenticatedUser = nil;
+    BARequest *request = [[self apiClass] requestForAuthenticateLogout];
+    return [[BAClient currentClient] performRequest:request];
+}
 
 - (void)authenticationStateDidChange:(BOOL)isAuthenticated {
     [self updateAuthorizationHeader:isAuthenticated];

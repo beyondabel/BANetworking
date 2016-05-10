@@ -17,6 +17,10 @@
     return [[BAClient currentClient] authenticateAsUserWithEmail:account password:password];
 }
 
++ (BAAsyncTask *)logout {
+    return [[BAClient currentClient] logout];
+}
+
 + (BOOL)isAuthenticated {
     return [[BAClient currentClient] isAuthenticated];
 }

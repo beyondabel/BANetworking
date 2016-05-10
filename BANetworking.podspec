@@ -31,5 +31,4 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "7.0"
   s.source       = { :git => "https://github.com/beyondabel/BANetworking.git", :tag => s.version, :submodules => true }
   s.source_files  = "BANetworking/BANetworking/**/*.{h,m}"
-  s.public_header_files = "BANetworking/BANetworking/**/*.h"
 end
