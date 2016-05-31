@@ -44,7 +44,7 @@ If you are using CocoaPods, then, just add this line to your Podfile
     
 ## Documentation
 
-You can find a getting started guide and full documentation over at the [BANetworking](https://net.beyondabel.com).
+You can find a getting started guide and full documentation over at the [BANetworking](http://net.beyondabel.com).
 
 ## License
 
