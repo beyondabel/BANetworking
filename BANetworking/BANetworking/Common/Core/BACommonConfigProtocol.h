@@ -10,10 +10,19 @@
 
 @protocol BACommonConfigProtocol <NSObject>
 
+/**
+ *  Setting HTTP URL/Body parameters
+ */
 + (NSDictionary *)commonParameters;
 
+/**
+ *  Setting HTTP Header parameters
+ */
 + (NSDictionary *)headerCommonParameters;
 
+/**
+ *  Setting HTTP Cookie parameters
+ */
 + (NSDictionary *)cookieCommonParameters;
 
 @end
