@@ -40,7 +40,7 @@ If you need a hand, you can contact us by [e-mail](beyondabel@gmail.com).
 
 If you are using CocoaPods, then, just add this line to your Podfile
 
-	pod 'BANetworking', '~> 1.0.0'
+	pod 'BANetworking', '~> 1.0.1'
     
 ## Documentation
 
