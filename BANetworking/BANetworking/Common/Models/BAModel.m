@@ -21,8 +21,9 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
     if (!self) return nil;
-    
-    [self updateFromDictionary:dictionary];
+    if ([dictionary isKindOfClass:[NSDictionary class]]) {
+        [self updateFromDictionary:dictionary];
+    }
     
     return self;
 }
