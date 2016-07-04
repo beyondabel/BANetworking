@@ -11,7 +11,15 @@
 @implementation BAAuthenticationAPI
 
 + (BARequest *)requestForAuthenticationWithEmail:(NSString *)email password:(NSString *)password {
-    return [BARequest POSTRequestWithPath:@"hello" parameters:nil];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    if (email) {
+        [parameters setObject:email forKey:@"email"];
+    }
+    
+    if (password) {
+        [parameters setObject:password forKey:@"password"];
+    }
+    return [BARequest POSTRequestWithPath:@"/login" parameters:parameters];
 }
 
 

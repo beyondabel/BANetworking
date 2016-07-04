@@ -1,0 +1,16 @@
+//
+//  UIImageView+BARemoteImage.m
+//  BANetworking
+//
+//  Created by BeyondAbel on 16/7/4.
+//  Copyright © 2016年 abel. All rights reserved.
+//
+
+#import "UIImageView+BARemoteImage.h"
+
+@implementation UIImageView (BARemoteImage)
+
+
+
+
+@end

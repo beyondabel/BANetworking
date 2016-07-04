@@ -22,6 +22,11 @@
  */
 + (BAAsyncTask *)authenticateAsUserWithAccount:(NSString *)account password:(NSString *)password;
 
+/**
+ *  clean local token
+ *
+ *  @return The resulting request task.
+ */
 + (BAAsyncTask *)logout;
 
 /** Informs the caller whether the default client is authenticated or not, i.e. has an active OAuth token.

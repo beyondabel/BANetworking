@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D169D751D2A9DA000FE7681 /* BAImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D169D741D2A9DA000FE7681 /* BAImageDownloader.m */; };
+		5D169D781D2A9DC700FE7681 /* UIButton+BARemoteImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D169D771D2A9DC700FE7681 /* UIButton+BARemoteImage.m */; };
+		5D169D7B1D2A9DE000FE7681 /* UIImageView+BARemoteImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D169D7A1D2A9DE000FE7681 /* UIImageView+BARemoteImage.m */; };
+		5D169D7E1D2A9DFA00FE7681 /* BAImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D169D7D1D2A9DFA00FE7681 /* BAImageCache.m */; };
 		B56CE9B71B9BE003006AAE86 /* BANetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CE9B61B9BE003006AAE86 /* BANetworking.m */; };
 		B56CE9BA1B9BE3D4006AAE86 /* BAClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CE9B91B9BE3D4006AAE86 /* BAClient.m */; };
 		B56CE9BD1B9BE44B006AAE86 /* BAHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CE9BC1B9BE44B006AAE86 /* BAHTTPClient.m */; };
@@ -62,6 +66,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D169D731D2A9DA000FE7681 /* BAImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAImageDownloader.h; sourceTree = "<group>"; };
+		5D169D741D2A9DA000FE7681 /* BAImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAImageDownloader.m; sourceTree = "<group>"; };
+		5D169D761D2A9DC700FE7681 /* UIButton+BARemoteImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+BARemoteImage.h"; sourceTree = "<group>"; };
+		5D169D771D2A9DC700FE7681 /* UIButton+BARemoteImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BARemoteImage.m"; sourceTree = "<group>"; };
+		5D169D791D2A9DE000FE7681 /* UIImageView+BARemoteImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+BARemoteImage.h"; sourceTree = "<group>"; };
+		5D169D7A1D2A9DE000FE7681 /* UIImageView+BARemoteImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+BARemoteImage.m"; sourceTree = "<group>"; };
+		5D169D7C1D2A9DFA00FE7681 /* BAImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAImageCache.h; sourceTree = "<group>"; };
+		5D169D7D1D2A9DFA00FE7681 /* BAImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAImageCache.m; sourceTree = "<group>"; };
 		B56CE9B51B9BE003006AAE86 /* BANetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BANetworking.h; sourceTree = "<group>"; };
 		B56CE9B61B9BE003006AAE86 /* BANetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BANetworking.m; sourceTree = "<group>"; };
 		B56CE9B81B9BE3D4006AAE86 /* BAClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAClient.h; sourceTree = "<group>"; };
@@ -184,9 +196,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D169D721D2A9D1800FE7681 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				5D169D731D2A9DA000FE7681 /* BAImageDownloader.h */,
+				5D169D741D2A9DA000FE7681 /* BAImageDownloader.m */,
+				5D169D761D2A9DC700FE7681 /* UIButton+BARemoteImage.h */,
+				5D169D771D2A9DC700FE7681 /* UIButton+BARemoteImage.m */,
+				5D169D791D2A9DE000FE7681 /* UIImageView+BARemoteImage.h */,
+				5D169D7A1D2A9DE000FE7681 /* UIImageView+BARemoteImage.m */,
+				5D169D7C1D2A9DFA00FE7681 /* BAImageCache.h */,
+				5D169D7D1D2A9DFA00FE7681 /* BAImageCache.m */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		B56CE9AE1B9BDEAF006AAE86 /* BANetworking */ = {
 			isa = PBXGroup;
 			children = (
+				5D169D721D2A9D1800FE7681 /* UIKit */,
 				B56CE9AF1B9BDF1E006AAE86 /* Common */,
 			);
 			path = BANetworking;
@@ -686,6 +714,7 @@
 				B56CEA221B9C183D006AAE86 /* NSString+BAAdditions.m in Sources */,
 				B56CEA4A1B9C184F006AAE86 /* BANumberValueTransformer.m in Sources */,
 				B56CEA1F1B9C183D006AAE86 /* NSNumberFormatter+BAAdditions.m in Sources */,
+				5D169D751D2A9DA000FE7681 /* BAImageDownloader.m in Sources */,
 				B5D9EF491C35098900739753 /* BADatastore.m in Sources */,
 				B56CEA171B9C183D006AAE86 /* NSArray+BAAdditions.m in Sources */,
 				B56CEA5F1B9C39A5006AAE86 /* BAAuthenticationAPI.m in Sources */,
@@ -695,11 +724,14 @@
 				B5D9EF401C3504EA00739753 /* BARequest.m in Sources */,
 				B56CEA2A1B9C183D006AAE86 /* NSValueTransformer+BATransformers.m in Sources */,
 				B5A026C81C4634ED000653D6 /* BAUserDefaultsTokenStore.m in Sources */,
+				5D169D7B1D2A9DE000FE7681 /* UIImageView+BARemoteImage.m in Sources */,
 				B56CEA1C1B9C183D006AAE86 /* NSError+BAErrors.m in Sources */,
+				5D169D781D2A9DC700FE7681 /* UIButton+BARemoteImage.m in Sources */,
 				B56CEA4E1B9C184F006AAE86 /* BAURLValueTransformer.m in Sources */,
 				B56CEA451B9C184F006AAE86 /* BABlockValueTransformer.m in Sources */,
 				B5A026C71C4634ED000653D6 /* BAUserDefaults.m in Sources */,
 				B58CC2831C81F4B900EF2210 /* MasterViewController.m in Sources */,
+				5D169D7E1D2A9DFA00FE7681 /* BAImageCache.m in Sources */,
 				B56CEA591B9C38DD006AAE86 /* BAAuthenticatedModel.m in Sources */,
 				B5D9EF441C3504EA00739753 /* BAResponseSerializer.m in Sources */,
 				B56CE9BA1B9BE3D4006AAE86 /* BAClient.m in Sources */,
