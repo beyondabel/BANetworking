@@ -18,6 +18,7 @@
 #define kDefaultBaseURL
 
 static NSString * const kDefaultBaseURLString = @"http://192.168.31.200/";
+static NSString * const kDefaultCookieURLString = @".jindanlicai.com/";
 
 #endif
 
@@ -112,11 +113,33 @@ static char * const kRequestProcessingQueueLabel = "com.jindanlicai.networingkit
             } else {
                 request.parameters = [NSClassFromString(className) commonParameters];
             }
+            
+            NSDictionary *cookieDictionary = [NSClassFromString(NSStringFromClass(self.commonParametersClass)) commonParameters];
+            for (NSString *key in [cookieDictionary allKeys]) {
+                [self setValue:cookieDictionary[key] forKey:key];
+            }
+            
         } else {
             debug(@"请在%@中实现commonParameters方法", self.commonParametersClass);
         }
     }
     return request;
+}
+
+- (void)addCookie {
+    
+}
+
+- (void)setCookieWithValue:(NSString *)value key:(NSString *)key {
+    NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
+    [cookieProperties setObject:key forKey:NSHTTPCookieName];
+    [cookieProperties setObject:value forKey:NSHTTPCookieValue];
+    [cookieProperties setObject:kDefaultCookieURLString forKey:NSHTTPCookieDomain];
+    [cookieProperties setObject:@"/" forKey:NSHTTPCookiePath];
+    [cookieProperties setObject:@"0" forKey:NSHTTPCookieVersion];
+    
+    NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:cookieProperties];
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
 }
 
 #pragma mark - Public

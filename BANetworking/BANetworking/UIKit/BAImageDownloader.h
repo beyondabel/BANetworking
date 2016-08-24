@@ -8,6 +8,34 @@
 
 #import <Foundation/Foundation.h>
 
+
+@protocol BAImageDownloaderDelegate;
+
 @interface BAImageDownloader : NSObject
+
+@property (nonatomic, strong) NSURL * url;
+@property (nonatomic, assign) BOOL avatar;
+
+
++ (id) requestWithURL:(NSURL *) url imageRequestDelegate:(id) delegate;
+
+/*!
+ @method start downloader image
+ */
+- (void) start;
+
+/*!
+ @method cancel downloader
+ */
+- (void) cancel;
+
+@end
+
+@protocol BAImageDownloaderDelegate <NSObject>
+
+- (void) avatarImageRequest:(BAImageDownloader *)imageRequest didFinishWithImageData:(NSData *)imageData;
+
+- (void) imageRequest:(BAImageDownloader *)imageRequest didFinishWithImageData:(NSData *)imageData;
+- (void) imageRequest:(BAImageDownloader *)imageRequest didFailWithError:(NSError *) error;
 
 @end
