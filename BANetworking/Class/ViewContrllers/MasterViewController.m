@@ -34,7 +34,19 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     
-    [self uploadFile];
+//    [self uploadFile];
+    
+    BARequest *request = [BARequest GETRequestWithURL:[NSURL URLWithString:@"https://www.baidu.com"] parameters:nil];
+    
+    BAAsyncTask *task = [[BAClient currentClient] performRequest:request];
+    [task onComplete:^(BAResponse *result, NSError *error) {
+        if (error) {
+            // 失败
+        } else {
+            // 成功
+            debug(@"%@", [[NSString alloc] initWithData:result.body encoding:NSUTF8StringEncoding]);
+        }
+    }];
 }
 
 // 单文件上传

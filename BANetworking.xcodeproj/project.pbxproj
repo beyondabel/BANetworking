@@ -11,6 +11,7 @@
 		5D169D781D2A9DC700FE7681 /* UIButton+BARemoteImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D169D771D2A9DC700FE7681 /* UIButton+BARemoteImage.m */; };
 		5D169D7B1D2A9DE000FE7681 /* UIImageView+BARemoteImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D169D7A1D2A9DE000FE7681 /* UIImageView+BARemoteImage.m */; };
 		5D169D7E1D2A9DFA00FE7681 /* BAImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D169D7D1D2A9DFA00FE7681 /* BAImageCache.m */; };
+		5D4D42D31D90D4AF00413883 /* BAImageCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D4D42D21D90D4AF00413883 /* BAImageCacheManager.m */; };
 		B56CE9B71B9BE003006AAE86 /* BANetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CE9B61B9BE003006AAE86 /* BANetworking.m */; };
 		B56CE9BA1B9BE3D4006AAE86 /* BAClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CE9B91B9BE3D4006AAE86 /* BAClient.m */; };
 		B56CE9BD1B9BE44B006AAE86 /* BAHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B56CE9BC1B9BE44B006AAE86 /* BAHTTPClient.m */; };
@@ -74,6 +75,8 @@
 		5D169D7A1D2A9DE000FE7681 /* UIImageView+BARemoteImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+BARemoteImage.m"; sourceTree = "<group>"; };
 		5D169D7C1D2A9DFA00FE7681 /* BAImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAImageCache.h; sourceTree = "<group>"; };
 		5D169D7D1D2A9DFA00FE7681 /* BAImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAImageCache.m; sourceTree = "<group>"; };
+		5D4D42D11D90D4AF00413883 /* BAImageCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAImageCacheManager.h; sourceTree = "<group>"; };
+		5D4D42D21D90D4AF00413883 /* BAImageCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAImageCacheManager.m; sourceTree = "<group>"; };
 		B56CE9B51B9BE003006AAE86 /* BANetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BANetworking.h; sourceTree = "<group>"; };
 		B56CE9B61B9BE003006AAE86 /* BANetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BANetworking.m; sourceTree = "<group>"; };
 		B56CE9B81B9BE3D4006AAE86 /* BAClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAClient.h; sourceTree = "<group>"; };
@@ -207,6 +210,8 @@
 				5D169D7A1D2A9DE000FE7681 /* UIImageView+BARemoteImage.m */,
 				5D169D7C1D2A9DFA00FE7681 /* BAImageCache.h */,
 				5D169D7D1D2A9DFA00FE7681 /* BAImageCache.m */,
+				5D4D42D11D90D4AF00413883 /* BAImageCacheManager.h */,
+				5D4D42D21D90D4AF00413883 /* BAImageCacheManager.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -662,6 +667,7 @@
 				TargetAttributes = {
 					B5B81D951B9BDC8C00D6588D = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 4MR9Z7C883;
 					};
 				};
 			};
@@ -744,6 +750,7 @@
 				B5D9EF411C3504EA00739753 /* BARequestFileData.m in Sources */,
 				B56CEA191B9C183D006AAE86 /* NSDateFormatter+BAAdditions.m in Sources */,
 				B56CEA1A1B9C183D006AAE86 /* NSDictionary+BAAdditions.m in Sources */,
+				5D4D42D31D90D4AF00413883 /* BAImageCacheManager.m in Sources */,
 				B5CBD5C31CB292D100E3D098 /* UserAPI.m in Sources */,
 				B5A026C51C4634ED000653D6 /* BAKeychain.m in Sources */,
 				B5D9EF431C3504EA00739753 /* BAResponse.m in Sources */,
@@ -864,11 +871,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = SJ5MY3TV95;
 				INFOPLIST_FILE = BANetworking/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.qiandele.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -876,11 +887,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = SJ5MY3TV95;
 				INFOPLIST_FILE = BANetworking/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.qiandele.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -10,4 +10,10 @@
 
 @interface UIImageView (BARemoteImage)
 
+- (void)setImageWithURL:(NSURL *)url;
+- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder;
+- (void)cancelCurrentImageLoad;
+
+- (void)cancelURL;
+
 @end
