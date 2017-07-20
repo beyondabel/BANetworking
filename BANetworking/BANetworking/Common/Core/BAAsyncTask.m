@@ -45,7 +45,7 @@ typedef NS_ENUM(NSUInteger, BAAsyncTaskState) {
 
 @implementation BAAsyncTask {
     
-    dispatch_once_t _resolvedOnceToken;
+//    dispatch_once_t _resolvedOnceToken;
 }
 
 - (instancetype)init {
@@ -355,6 +355,7 @@ typedef NS_ENUM(NSUInteger, BAAsyncTaskState) {
 }
 
 - (void)resolveWithState:(BAAsyncTaskState)state result:(id)result {
+    static dispatch_once_t _resolvedOnceToken;
     dispatch_once(&_resolvedOnceToken, ^{
         [self performSynchronizedBlock:^{
             self.state = state;

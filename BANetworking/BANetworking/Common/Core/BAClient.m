@@ -28,7 +28,9 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
  *  A pending task represents a request that has been requested to be performed but not yet started.
  *  It might be started immediately or enqueued until the token has been successfully refreshed if expired.
  */
-@interface BAPendingRequest : NSObject
+@interface BAPendingRequest : NSObject {
+    
+}
 
 @property (nonatomic, strong, readonly) BARequest *request;
 @property (nonatomic, copy) BARequestCompletionBlock completionBlock;
@@ -37,11 +39,7 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
 
 @end
 
-@implementation BAPendingRequest {
-    
-    dispatch_once_t _startedOnceToken;
-    dispatch_once_t _cancelledOnceToken;
-}
+@implementation BAPendingRequest
 
 - (instancetype)initWithRequest:(BARequest *)request progress:(BARequestProgressBlock)progress completion:(BARequestCompletionBlock)completion {
     self = [super init];
@@ -61,7 +59,8 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
  *  @param client The HTTP client from which to request the NSURLSessionTask.
  */
 - (void)startWithHTTPClient:(BAHTTPClient *)client {
-    dispatch_once(&_startedOnceToken, ^{
+    static dispatch_once_t startedOnceToken;
+    dispatch_once(&startedOnceToken, ^{
         self.task = [client taskForRequest:self.request progress:self.progressBlock completion:self.completionBlock];
         self.completionBlock = nil;
         
@@ -76,7 +75,8 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
  *  @param client The HTTP client from which to request the NSURLSessionTask.
  */
 - (void)cancelWithHTTPClient:(BAHTTPClient *)client {
-    dispatch_once(&_cancelledOnceToken, ^{
+    static dispatch_once_t cancelledOnceToken;
+    dispatch_once(&cancelledOnceToken, ^{
         if (!self.task) {
             self.task = [client taskForRequest:self.request progress:self.progressBlock completion:self.completionBlock];
             self.completionBlock = nil;
