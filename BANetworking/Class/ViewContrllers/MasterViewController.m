@@ -11,7 +11,7 @@
 #import "BAGlobalHeaders.h"
 #import "NSArray+BAAdditions.h"
 #import "BAModel.h"
-
+#import "AutoModel.h"
 
 @interface MasterViewController ()
 
@@ -36,24 +36,46 @@
     
 //    [self uploadFile];
     
-    BARequest *request = [BARequest GETRequestWithURL:[NSURL URLWithString:@"https://www.baidu.com"] parameters:nil];
+//    BARequest *request = [BARequest GETRequestWithURL:[NSURL URLWithString:@"https://www.baidu.com"] parameters:nil];
+//
+//    BAAsyncTask *task = [[BAClient currentClient] performTaskWithRequest:request];
+//    [task onComplete:^(BAResponse *result, NSError *error) {
+//        if (error) {
+//            // 失败
+//        } else {
+//            // 成功
+//            debug(@"%@", [[NSString alloc] initWithData:result.body encoding:NSUTF8StringEncoding]);
+//        }
+//    }];
+//    NSDictionary *dictionay = @{
+//                                @"userId" : @(1),
+//                                @"array" : @[
+//                                        @{
+//                                            @"userId" : @(1),
+//
+//                                            }
+//                                        ],
+//                                @"sex" : @"1",
+//                                @"week" : @"1",
+//                                @"age" : @"12"
+//                                };
+//    AutoModel *autoModel = [[AutoModel alloc] initWithDictionary:dictionay];
     
-    BAAsyncTask *task = [[BAClient currentClient] performRequest:request];
-    [task onComplete:^(BAResponse *result, NSError *error) {
-        if (error) {
-            // 失败
-        } else {
-            // 成功
-            debug(@"%@", [[NSString alloc] initWithData:result.body encoding:NSUTF8StringEncoding]);
-        }
-    }];
+//    BARequest *request = [BARequest POSTRequestWithURL:[NSURL URLWithString:@""] parameters:@{}];
+////    NSURLRequest *request = request.URLRequestConfigurationBlock();
+////    request.URLRequestConfigurationBlock = (^)(NSURLRequest *urlRequest){};
+//    [request setURLRequestConfigurationBlock:^NSURLRequest *(NSURLRequest *request) {
+////    request.timeoutInterval= 120;
+//        request.timeoutInterval = 120;
+//        return request;
+//    }];
 }
 
 // 单文件上传
 - (void)uploadFile {
     BARequest *request = [BARequest POSTRequestWithPath:@"avatar" parameters:@{@"type" : @"avatar"}];
     request.fileData = [BARequestFileData fileDataWithData:[NSData data] name:@"fileKey" fileName:@"fileName"];
-    [[[BAClient currentClient] performRequest:request] onComplete:^(id result, NSError *error) {
+    [[[BAClient currentClient] performTaskWithRequest:request] onComplete:^(id result, NSError *error) {
         if (error) {
             NSLog(@"文件上传出错");
         } else {
@@ -70,7 +92,7 @@
     BARequestFileData *fileData1 = [BARequestFileData fileDataWithData:UIImagePNGRepresentation([UIImage imageNamed:@"1.png"]) name:@"image1" fileName:@"fileName1"];
     BARequestFileData *fileData2 = [BARequestFileData fileDataWithData:UIImagePNGRepresentation([UIImage imageNamed:@"1.png"]) name:@"image2" fileName:@"fileName2"];
     request.fileDatas = @[fileData1, fileData2];
-    [[[BAClient currentClient] performRequest:request] onComplete:^(id result, NSError *error) {
+    [[[BAClient currentClient] performTaskWithRequest:request] onComplete:^(id result, NSError *error) {
         if (error) {
             NSLog(@"文件上传出错");
         } else {

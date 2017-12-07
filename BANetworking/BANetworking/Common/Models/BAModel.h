@@ -46,4 +46,6 @@
  */
 + (NSDictionary *)dictionaryKeyPathsForPropertyNames;
 
++ (NSDictionary *)dictionaryClassForPropertyNames;
+
 @end

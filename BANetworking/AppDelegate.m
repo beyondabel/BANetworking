@@ -22,8 +22,6 @@
     // Override point for customization after application launch.
     [BANetworking setDebugEnabled:YES];
     [BANetworking automaticallyStoreTokenInUserDefaultsForCurrentApp];
-    [BANetworking setupAuthenticatedHandlerClass:[AutoModel class] authenticatedAPIClass:[UserAPI class]];
-//    [BANetworking setupCommonParametersClass:[CommonParameter Class]];
     
     return YES;
 }

@@ -84,30 +84,10 @@ extern NSString * const BAClientAuthenticationStateDidChangeNotification;
  */
 - (void)performBlock:(void (^)(void))block;
 
-/** Authenticate the client as a user with an email and password.
- *
- *  @param email The user's email address
- *  @param password The user's password
- *
- *  @return The resulting task.
- */
-- (BAAsyncTask *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password;
-
-
-- (void)setupAuthenticatedHandlerClass:(Class)authenticatedClass authenticatedAPIClass:(Class)apiClass;
-
-- (void)setupCommonParametersClass:(Class)commonClass;
 
 - (void)setupUserAgent:(NSString *)userAgent;
 
-/**
- *  Authenticate using a transfer token.
- *
- *  @param transferToken The transfer token.
- *
- *  @return The resulting task.
- */
-- (BAAsyncTask *)authenticateWithTransferToken:(NSString *)transferToken;
+- (void)setHeaderValue:(NSString *)value forKey:(NSString *)key;
 
 /**
  *  Dispatches an HTTP request task for the provided request.
@@ -116,7 +96,7 @@ extern NSString * const BAClientAuthenticationStateDidChangeNotification;
  *
  *  @return The resulting task.
  */
-- (BAAsyncTask *)performRequest:(BARequest *)request;
+- (BAAsyncTask *)performTaskWithRequest:(BARequest *)request;
 
 /**
  *  Dispatches an HTTP request task for the provided request.
@@ -134,6 +114,6 @@ extern NSString * const BAClientAuthenticationStateDidChangeNotification;
  */
 - (void)restoreTokenIfNeeded;
 
-- (BAAsyncTask *)logout;
+- (void)updateStoredToken;
 
 @end

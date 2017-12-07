@@ -144,7 +144,6 @@
 		B56CEA5E1B9C39A5006AAE86 /* BAAuthenticationAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAAuthenticationAPI.m; sourceTree = "<group>"; };
 		B5769C861C62F4690063471E /* BAMultipartFormData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAMultipartFormData.h; sourceTree = "<group>"; };
 		B5769C871C62F4690063471E /* BAMultipartFormData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAMultipartFormData.m; sourceTree = "<group>"; };
-		B578E1EE1CAA68C000A81747 /* BACommonConfigProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BACommonConfigProtocol.h; sourceTree = "<group>"; };
 		B58CC27E1C81F4B900EF2210 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		B58CC27F1C81F4B900EF2210 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		B58CC2801C81F4B900EF2210 /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
@@ -265,7 +264,6 @@
 				B56CE9D71B9C13CB006AAE86 /* BASecurity.m */,
 				B56CE9D91B9C13EA006AAE86 /* BAURLSessionTaskDelegate.h */,
 				B56CE9DA1B9C13EA006AAE86 /* BAURLSessionTaskDelegate.m */,
-				B578E1EE1CAA68C000A81747 /* BACommonConfigProtocol.h */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -878,6 +876,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = SJ5MY3TV95;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BANetworking/Frameworks",
+				);
 				INFOPLIST_FILE = BANetworking/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -894,6 +896,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = SJ5MY3TV95;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BANetworking/Frameworks",
+				);
 				INFOPLIST_FILE = BANetworking/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -13,24 +13,9 @@
 
 @implementation BANetworking
 
-+ (BAAsyncTask *)authenticateAsUserWithAccount:(NSString *)account password:(NSString *)password {
-    return [[BAClient currentClient] authenticateAsUserWithEmail:account password:password];
-}
-
-+ (BAAsyncTask *)logout {
-    return [[BAClient currentClient] logout];
-}
 
 + (BOOL)isAuthenticated {
     return [[BAClient currentClient] isAuthenticated];
-}
-
-+ (void)setupAuthenticatedHandlerClass:(Class)className authenticatedAPIClass:(Class)apiName {
-    [[BAClient currentClient] setupAuthenticatedHandlerClass:className authenticatedAPIClass:apiName];
-}
-
-+ (void)setupCommonParametersClass:(Class)commonClass {
-    [[BAClient currentClient] setupCommonParametersClass:commonClass];
 }
 
 + (void)setupUserAgent:(NSString *)userAgent {

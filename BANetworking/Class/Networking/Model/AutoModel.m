@@ -7,12 +7,13 @@
 //
 
 #import "AutoModel.h"
+#import "NSValueTransformer+BATransformers.h"
 
 @implementation AutoModel
 
-+ (NSDictionary *)dictionaryKeyPathsForPropertyNames {
++ (NSDictionary *)dictionaryClassForPropertyNames {
     return @{
-                @"accessToken": @"token",
+             @"array" : AutoModel.class
              };
 }
 

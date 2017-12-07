@@ -17,39 +17,39 @@ static NSDateFormatter *sUTCDateTimeFormatter = nil;
 #pragma mark - Public
 
 + (NSDate *)ba_dateFromUTCDateString:(NSString *)dateString {
-  return [[self UTCDateFormatter] dateFromString:dateString];
+    return [[self UTCDateFormatter] dateFromString:dateString];
 }
 
 + (NSDate *)ba_dateFromUTCDateTimeString:(NSString *)dateTimeString {
-  return [[self UTCDateTimeFormatter] dateFromString:dateTimeString];
+    return [[self UTCDateTimeFormatter] dateFromString:dateTimeString];
 }
 
 - (NSString *)ba_UTCDateString {
-  return [[[self class] UTCDateFormatter] stringFromDate:self];
+    return [[[self class] UTCDateFormatter] stringFromDate:self];
 }
 
 - (NSString *)ba_UTCDateTimeString {
-  return [[[self class] UTCDateTimeFormatter] stringFromDate:self];
+    return [[[self class] UTCDateTimeFormatter] stringFromDate:self];
 }
 
 #pragma mark - Private
 
 + (NSDateFormatter *)UTCDateFormatter {
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    sUTCDateFormatter = [NSDateFormatter ba_UTCDateFormatter];
-  });
-  
-  return sUTCDateFormatter;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sUTCDateFormatter = [NSDateFormatter ba_UTCDateFormatter];
+    });
+    
+    return sUTCDateFormatter;
 }
 
 + (NSDateFormatter *)UTCDateTimeFormatter {
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    sUTCDateTimeFormatter = [NSDateFormatter ba_UTCDateTimeFormatter];
-  });
-  
-  return sUTCDateTimeFormatter;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sUTCDateTimeFormatter = [NSDateFormatter ba_UTCDateTimeFormatter];
+    });
+    
+    return sUTCDateTimeFormatter;
 }
 
 @end

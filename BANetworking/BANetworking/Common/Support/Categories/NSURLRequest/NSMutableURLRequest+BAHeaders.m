@@ -15,13 +15,13 @@ static NSString * const kAuthorizationOAuth2AccessTokenFormat = @"OAuth2 %@";
 @implementation NSMutableURLRequest (BAHeaders)
 
 - (void)ba_setAuthorizationHeaderWithOAuth2AccessToken:(NSString *)accessToken {
-  NSString *value = [NSString stringWithFormat:kAuthorizationOAuth2AccessTokenFormat, accessToken];
-  [self setValue:value forHTTPHeaderField:kHeaderAuthorization];
+    NSString *value = [NSString stringWithFormat:kAuthorizationOAuth2AccessTokenFormat, accessToken];
+    [self setValue:value forHTTPHeaderField:kHeaderAuthorization];
 }
 
 - (void)ba_setAuthorizationHeaderWithUsername:(NSString *)username password:(NSString *)password {
-  NSString *authString = [NSString stringWithFormat:@"%@:%@", username, password];
-  [self setValue:[NSString stringWithFormat:@"Basic %@", [authString ba_base64String]] forHTTPHeaderField:@"Authorization"];
+    NSString *authString = [NSString stringWithFormat:@"%@:%@", username, password];
+    [self setValue:[NSString stringWithFormat:@"Basic %@", [authString ba_base64String]] forHTTPHeaderField:@"Authorization"];
 }
 
 @end

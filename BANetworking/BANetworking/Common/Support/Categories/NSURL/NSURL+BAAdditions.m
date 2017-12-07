@@ -13,19 +13,19 @@
 @implementation NSURL (BAAdditions)
 
 - (NSURL *)ba_URLByAppendingQueryParameters:(NSDictionary *)parameters {
-  if ([parameters count] == 0) return self;
-  
-  NSMutableString *query = [NSMutableString stringWithString:self.absoluteString];
-  
-  if (![query ba_containsString:@"?"]) {
-    [query appendString:@"?"];
-  } else {
-    [query appendString:@"&"];
-  }
-  
-  [query appendString:[parameters ba_escapedQueryString]];
-  
-  return [NSURL URLWithString:[query copy]];
+    if ([parameters count] == 0) return self;
+    
+    NSMutableString *query = [NSMutableString stringWithString:self.absoluteString];
+    
+    if (![query ba_containsString:@"?"]) {
+        [query appendString:@"?"];
+    } else {
+        [query appendString:@"&"];
+    }
+    
+    [query appendString:[parameters ba_escapedQueryString]];
+    
+    return [NSURL URLWithString:[query copy]];
 }
 
 @end

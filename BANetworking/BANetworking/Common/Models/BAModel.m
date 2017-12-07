@@ -68,6 +68,10 @@
     return nil;
 }
 
++ (NSDictionary *)dictionaryClassForPropertyNames {
+    return nil;
+}
+
 #pragma mark - Mapping
 
 + (NSDictionary *)dictionaryKeyPathsForPropertyNamesForClassAndSuperClasses {
@@ -91,8 +95,6 @@
     
     NSDictionary *proertyDictionary = [[self class] propertyTypeDictionary];
     
-    //    NSArray * proerty = [[self class] nl_dynamicPropertyDescriptors];
-    
     for (NSString *propertyName in self.codablePropertyNames) {
         // Should this property be mapped?
         NSString *keyPath = [keyPathMapping objectForKey:propertyName];
@@ -101,20 +103,54 @@
         }
         
         id value = [dictionary valueForKeyPath:keyPath];
+        if (value && value == NSNull.null) {
+            // NSNull should be treated as nil
+            value = nil;
+        }
+        
+        NSLog(@"propertyName = %@  :  proertyDictionary = %@", propertyName, proertyDictionary[propertyName]);
         if (value) {
-            if (value == NSNull.null) {
-                // NSNull should be treated as nil
-                value = nil;
-            } else {
-                // Is there is a value transformer for this property?
-                NSValueTransformer *transformer = [[self class] valueTransformerForKey:propertyName dictionary:dictionary];
-                if (transformer)  {
-                    value = [transformer transformedValue:value];
+            if ([proertyDictionary[propertyName] isEqualToString:@"NSString"]) {
+                [self setValue:[NSString stringWithFormat:@"%@", value] forKey:propertyName];
+            } else if ([proertyDictionary[propertyName] isEqualToString:@"NSNumber"]) {
+                if ([value isKindOfClass:[NSString class]]) {
+                    value = [NSNumber numberWithInteger:[value integerValue]];
                 }
-            }
-            
-            if ([self typeMatchingWithType:proertyDictionary[propertyName] value:value]) {
-                [self setValue:value forKey:propertyName];
+                if ([value isKindOfClass:[NSNumber class]]) {
+                    [self setValue:value forKey:propertyName];
+                }
+            } else if ([proertyDictionary[propertyName] isEqualToString:@"q"] || [proertyDictionary[propertyName] isEqualToString:@"i"] || [proertyDictionary[propertyName] isEqualToString:@"s"]) {
+                if ([value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSString class]]) {
+                    [self setValue:value forKey:propertyName];
+                }
+            } else if ([proertyDictionary[propertyName] isEqualToString:@"f"] || [proertyDictionary[propertyName] isEqualToString:@"d"]) {
+                if ([value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSString class]]) {
+                    [self setValue:value forKey:propertyName];
+                }
+            } else if ([proertyDictionary[propertyName] isEqualToString:@"b"] || [proertyDictionary[propertyName] isEqualToString:@"B"]) {
+                if ([value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSString class]]) {
+                    [self setValue:value forKey:propertyName];
+                }
+            } else if ([proertyDictionary[propertyName] isEqualToString:@"NSDictionary"] || [proertyDictionary[propertyName] isEqualToString:@"NSMutableDictionary"] ) {
+                if ([value isKindOfClass:[NSDictionary class]]) {
+                    [self setValue:value forKey:propertyName];
+                }
+            } else if ([proertyDictionary[propertyName] isEqualToString:@"NSArray"] || [proertyDictionary[propertyName] isEqualToString:@"NSMutableArray"]) {
+                if ([value isKindOfClass:[NSArray class]]) {
+                    Class className = [[self class] dictionaryClassForPropertyNames][propertyName];
+                    if (className) {
+                        [self setValue:[self mapTransforForArray:value className:className] forKey:propertyName];
+                    } else {
+                        [self setValue:value forKey:propertyName];
+                    }
+                }
+            } else if ([value isKindOfClass:[NSDictionary class]]) {
+                NSString *className = proertyDictionary[propertyName];
+                BAModel *model = [[NSClassFromString(className) alloc] init];
+                if (model) {
+                    [model updateFromDictionary:value];
+                    [self setValue:model forKey:propertyName];
+                }
             }
         }
     }
@@ -199,10 +235,12 @@
                         if (name && typeEncoding) {
                             [propertyDictionary setObject:typeEncoding forKey:[NSString stringWithUTF8String:name]];
                         }
+                        
                         break;
                     }
                 }
             }
+            
             if (attrs) {
                 free(attrs);
                 attrs = NULL;
@@ -243,6 +281,21 @@
     }
     
     return NO;
+}
+
+- (NSArray *)mapTransforForArray:(NSArray *)array className:(Class)className {
+    NSMutableArray *mapObjectArray = [NSMutableArray array];
+    for (NSInteger index = 0; index < array.count; index ++) {
+        NSObject *object = array[index];
+        if ([object isKindOfClass:[NSDictionary class]]) {
+            BAModel *model = [[className alloc] init];
+            [model updateFromDictionary:(NSDictionary *)object];
+            [mapObjectArray addObject:model];
+        } else if ([object isKindOfClass:[NSArray class]]) {
+            [mapObjectArray addObject:[self mapTransforForArray:(NSArray *)object className:className]];
+        }
+    }
+    return mapObjectArray;
 }
 
 #pragma mark - Value transformation

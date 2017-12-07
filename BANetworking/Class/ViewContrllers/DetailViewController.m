@@ -10,6 +10,8 @@
 
 @interface DetailViewController ()
 
+@property (nonatomic, assign) NSArray *testArray;
+
 @end
 
 @implementation DetailViewController

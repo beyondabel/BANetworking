@@ -12,42 +12,11 @@
 
 @interface BANetworking : NSObject
 
-/** Authenticate the default client as a user with an email and password.
- *
- * @param email The user's email address
- * @param password The user's password
- * @param completion The completion block to be called once the authentication attempt completes either successfully or with an error.
- *
- * @return The resulting request task.
- */
-+ (BAAsyncTask *)authenticateAsUserWithAccount:(NSString *)account password:(NSString *)password;
-
-/**
- *  clean local token
- *
- *  @return The resulting request task.
- */
-+ (BAAsyncTask *)logout;
-
 /** Informs the caller whether the default client is authenticated or not, i.e. has an active OAuth token.
  *
  * @return YES if the default client is authenticated, otherwise NO.
  */
 + (BOOL)isAuthenticated;
-
-/* Configure the default client with a BANetworking authenticate request resolving class.
- *
- * @param authenticatedClass  request userModel resolving class
- * @param apiClass    request userModel API resolving class
- *
- */
-+ (void)setupAuthenticatedHandlerClass:(Class)authenticatedClass authenticatedAPIClass:(Class)apiClass;
-
-/* Configure the default client with a BANetworking common parameters class.
- *
- *
- */
-+ (void)setupCommonParametersClass:(Class)commonClass;
 
 /*
  * Configure the default client with http header userAgent.

@@ -74,6 +74,10 @@ static char * const kRequestProcessingQueueLabel = "com.jindanlicai.networingkit
     [self.requestSerializer setUserAgentHeader:userAgent];
 }
 
+- (void)setHeaderValue:(NSString *)value forKey:(NSString *)key {
+    [self.requestSerializer setValue:value forHTTPHeader:key];
+}
+
 #pragma mark - Private
 
 - (BASecurity *)security {
@@ -101,52 +105,10 @@ static char * const kRequestProcessingQueueLabel = "com.jindanlicai.networingkit
     return self.taskDelegates[@(task.taskIdentifier)];
 }
 
-- (BARequest *)addCommonParametersByRequest:(BARequest *)request {
-    if (self.commonParametersClass) {
-        if ([(id)self.commonParametersClass conformsToProtocol:@protocol(BACommonConfigProtocol)]) {
-            NSString *className = NSStringFromClass(self.commonParametersClass);
-            if (request.parameters) {
-                NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-                [parameters addEntriesFromDictionary:request.parameters];
-                [parameters addEntriesFromDictionary:[NSClassFromString(className) commonParameters]];
-                request.parameters = parameters;
-            } else {
-                request.parameters = [NSClassFromString(className) commonParameters];
-            }
-            
-            NSDictionary *cookieDictionary = [NSClassFromString(NSStringFromClass(self.commonParametersClass)) commonParameters];
-            for (NSString *key in [cookieDictionary allKeys]) {
-                [self setValue:cookieDictionary[key] forKey:key];
-            }
-            
-        } else {
-            debug(@"请在%@中实现commonParameters方法", self.commonParametersClass);
-        }
-    }
-    return request;
-}
-
-- (void)addCookie {
-    
-}
-
-- (void)setCookieWithValue:(NSString *)value key:(NSString *)key {
-    NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
-    [cookieProperties setObject:key forKey:NSHTTPCookieName];
-    [cookieProperties setObject:value forKey:NSHTTPCookieValue];
-    [cookieProperties setObject:kDefaultCookieURLString forKey:NSHTTPCookieDomain];
-    [cookieProperties setObject:@"/" forKey:NSHTTPCookiePath];
-    [cookieProperties setObject:@"0" forKey:NSHTTPCookieVersion];
-    
-    NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:cookieProperties];
-    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
-}
-
 #pragma mark - Public
 
 - (NSURLSessionTask *)taskForRequest:(BARequest *)request progress:(BARequestProgressBlock)progress completion:(BARequestCompletionBlock)completion {
     NSURLSessionTask *task = nil;
-    request = [self addCommonParametersByRequest:request];
     
     BAHTTPResponseProcessBlock responseProcessBlock = nil;
     

@@ -17,7 +17,6 @@
 NSString * const BAClientAuthenticationStateDidChangeNotification = @"BAClientAuthenticationStateDidChangeNotification";
 
 static void * kIsAuthenticatedContext = &kIsAuthenticatedContext;
-static NSUInteger const kTokenExpirationLimit = 10 * 60; // 10 minutes
 
 typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
     BAClientAuthRequestPolicyCancelPrevious = 0,
@@ -29,7 +28,7 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
  *  It might be started immediately or enqueued until the token has been successfully refreshed if expired.
  */
 @interface BAPendingRequest : NSObject {
-    
+    dispatch_once_t _performedOnceToken;
 }
 
 @property (nonatomic, strong, readonly) BARequest *request;
@@ -59,8 +58,7 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
  *  @param client The HTTP client from which to request the NSURLSessionTask.
  */
 - (void)startWithHTTPClient:(BAHTTPClient *)client {
-    static dispatch_once_t startedOnceToken;
-    dispatch_once(&startedOnceToken, ^{
+    dispatch_once(&_performedOnceToken, ^{
         self.task = [client taskForRequest:self.request progress:self.progressBlock completion:self.completionBlock];
         self.completionBlock = nil;
         
@@ -75,8 +73,7 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
  *  @param client The HTTP client from which to request the NSURLSessionTask.
  */
 - (void)cancelWithHTTPClient:(BAHTTPClient *)client {
-    static dispatch_once_t cancelledOnceToken;
-    dispatch_once(&cancelledOnceToken, ^{
+    dispatch_once(&_performedOnceToken, ^{
         if (!self.task) {
             self.task = [client taskForRequest:self.request progress:self.progressBlock completion:self.completionBlock];
             self.completionBlock = nil;
@@ -95,15 +92,12 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
 @property (nonatomic, strong, readwrite) BARequest *savedAuthenticationRequest;
 @property (nonatomic, strong, readonly) NSMutableOrderedSet *pendingRequests;
 
-@property (nonatomic, strong, readonly) Class authenticatedClass;
-@property (nonatomic, strong, readonly) Class apiClass;
-
 @end
 
 
 @implementation BAClient
 
-@synthesize pendingRequests = _pendingRequests, authenticatedClass = _authenticatedClass, apiClass = _apiClass;
+@synthesize pendingRequests = _pendingRequests;
 
 + (instancetype)defaultClient {
     static BAClient *defaultClient;
@@ -169,20 +163,6 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
     return _pendingRequests;
 }
 
-- (Class)authenticatedClass {
-    if (_authenticatedClass) {
-        return _authenticatedClass;
-    }
-    return [BAAuthenticatedModel class];
-}
-
-- (Class)apiClass {
-    if (_apiClass) {
-        return _apiClass;
-    }
-    return [BAAuthenticationAPI class];
-}
-
 #pragma mark - Clients
 
 + (void)pushClient:(BAClient *)client {
@@ -220,115 +200,20 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
     self.HTTPClient.debugEnabled = debugEnabled;
 }
 
-- (void)setupAuthenticatedHandlerClass:(Class)authenticatedClass authenticatedAPIClass:(Class)apiClass {
-    if(authenticatedClass) {
-        _authenticatedClass = authenticatedClass;
-    }
-    
-    if (apiClass) {
-        _apiClass = apiClass;
-    }
-}
-
-- (void)setupCommonParametersClass:(Class)commonClass {
-    _HTTPClient.commonParametersClass = commonClass;
-}
-
 - (void)setupUserAgent:(NSString *)userAgent {
     _HTTPClient.userAgent = userAgent;
 }
 
-#pragma mark - Authentication
-
-- (BAAsyncTask *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password {
-    NSParameterAssert(email);
-    NSParameterAssert(password);
-    BARequest *request = [[self apiClass] requestForAuthenticationWithEmail:email password:password];
-    return [self authenticateWithRequest:request requestPolicy:BAClientAuthRequestPolicyCancelPrevious];
-}
-
-- (BAAsyncTask *)authenticateWithTransferToken:(NSString *)transferToken {
-    NSParameterAssert(transferToken);
-    
-    BARequest *request = [[self apiClass] requestForAuthenticationWithTransferToken:transferToken];
-    return [self authenticateWithRequest:request requestPolicy:BAClientAuthRequestPolicyCancelPrevious];
-}
-
-- (BAAsyncTask *)authenticateWithRequest:(BARequest *)request requestPolicy:(BAClientAuthRequestPolicy)requestPolicy {
-    if (requestPolicy == BAClientAuthRequestPolicyIgnore) {
-        if (self.authenticationTask) {
-            // Ignore this new authentation request, let the old one finish
-            return nil;
-        }
-    } else if (requestPolicy == BAClientAuthRequestPolicyCancelPrevious) {
-        // Cancel any pending authentication task
-        [self.authenticationTask cancel];
+- (void)setHeaderValue:(NSString *)value forKey:(NSString *)key {
+    if (value && key) {
+        [self.HTTPClient setHeaderValue:value forKey:key];
     }
-    
-    BA_WEAK_SELF weakSelf = self;
-    
-    self.authenticationTask = [[self performTaskWithRequest:request] then:^(BAResponse *response, NSError *error) {
-        BA_STRONG(weakSelf) strongSelf = weakSelf;
-        if (!error) {
-            strongSelf.authenticatedUser = [[[self authenticatedClass] alloc] initWithDictionary:response.body];
-        } else if ([error ba_isServerError]) {
-            // If authentication failed server side, reset the token since it isn't likely
-            // to be successful next time either. If it is NOT a server side error, it might
-            // just be networking so we should not reset the token.
-            strongSelf.authenticatedUser = nil;
-        }
-        
-        strongSelf.authenticationTask = nil;
-    }];
-    
-    return self.authenticationTask;
-}
-
-- (BAAsyncTask *)authenticateWithSavedRequest:(BARequest *)request {
-    BAAsyncTask *task = [self authenticateWithRequest:request requestPolicy:BAClientAuthRequestPolicyIgnore];
-    
-    BA_WEAK_SELF weakSelf = self;
-    
-    task = [task then:^(id result, NSError *error) {
-        BA_STRONG(weakSelf) strongSelf = weakSelf;
-        
-        if (!error) {
-            [strongSelf processPendingRequests];
-        } else {
-            [strongSelf clearPendingRequests];
-        }
-    }];
-    
-    return task;
 }
 
 #pragma mark - Requests
 
 - (NSMutableURLRequest *)URLRequestForRequest:(BARequest *)request {
     return [self.HTTPClient URLRequestForRequest:request];
-}
-
-- (BAAsyncTask *)performRequest:(BARequest *)request {
-    BAAsyncTask *task = nil;
-    
-    if (self.isAuthenticated) {
-        // Authenticated request, might need token refresh
-        if (![self.authenticatedUser willExpireWithinIntervalFromNow:kTokenExpirationLimit]) {
-            task = [self performTaskWithRequest:request];
-        } else {
-            task = [self enqueueTaskWithRequest:request];
-            [self refreshToken];
-        }
-    } else if (self.savedAuthenticationRequest) {
-        // Can self-authenticate, authenticate before performing request
-        task = [self enqueueTaskWithRequest:request];
-        [self authenticateWithSavedRequest:self.savedAuthenticationRequest];
-    } else {
-        // Unauthenticated request
-        task = [self performTaskWithRequest:request];
-    }
-    
-    return task;
 }
 
 - (BAAsyncTask *)performTaskWithRequest:(BARequest *)request {
@@ -410,17 +295,6 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
 }
 
 #pragma mark - State
-- (BAAsyncTask *)logout {
-    if (![self isAuthenticated]) {
-        return nil;
-    }
-    if (self.tokenStore) {
-        [self.tokenStore deleteStoredToken];
-    }
-    self.authenticatedUser = nil;
-    BARequest *request = [[self apiClass] requestForAuthenticateLogout];
-    return [[BAClient currentClient] performRequest:request];
-}
 
 - (void)authenticationStateDidChange:(BOOL)isAuthenticated {
     [self updateAuthorizationHeader:isAuthenticated];
@@ -458,33 +332,6 @@ typedef NS_ENUM(NSUInteger, BAClientAuthRequestPolicy) {
     if (!self.isAuthenticated) {
         self.authenticatedUser = [self.tokenStore storedToken];
     }
-}
-
-#pragma mark - Refresh token
-
-- (BAAsyncTask *)refreshTokenWithRefreshToken:(NSString *)refreshToken {
-    NSParameterAssert(refreshToken);
-    
-    BARequest *request = [BAAuthenticationAPI requestToRefreshToken:refreshToken];
-    return [self authenticateWithRequest:request requestPolicy:BAClientAuthRequestPolicyIgnore];
-}
-
-- (BAAsyncTask *)refreshToken {
-    BAAsyncTask *task = [self refreshTokenWithRefreshToken:self.authenticatedUser.accessToken];
-    
-    BA_WEAK_SELF weakSelf = self;
-    
-    task = [task then:^(id result, NSError *error) {
-        BA_STRONG(weakSelf) strongSelf = weakSelf;
-        
-        if (!error) {
-            [strongSelf processPendingRequests];
-        } else {
-            [strongSelf clearPendingRequests];
-        }
-    }];
-    
-    return task;
 }
 
 #pragma mark - KVO

@@ -10,7 +10,6 @@
 #import "BAResponse.h"
 #import "BARequestSerializer.h"
 #import "BAResponseSerializer.h"
-#import "BACommonConfigProtocol.h"
 
 typedef void(^BARequestCompletionBlock)(BAResponse *response, NSError *error);
 
@@ -35,8 +34,6 @@ typedef void(^BARequestProgressBlock)(float progress, int64_t totalBytesExpected
 
 @property (nonatomic, assign) BOOL debugEnabled;
 
-@property (nonatomic, strong) Class<BACommonConfigProtocol> commonParametersClass;
-
 /**
  *  The serializer of the request.
  */
@@ -51,6 +48,9 @@ typedef void(^BARequestProgressBlock)(float progress, int64_t totalBytesExpected
  *  Controls whether or not to pin the server public key to that of any .cer certificate included in the app bundle.
  */
 @property (nonatomic) BOOL useSSLPinning;
+
+
+- (void)setHeaderValue:(NSString *)value forKey:(NSString *)key;
 
 /**
  *  Creates and returns a NSURLSessionTask for the given request, for which the provided completion handler
